@@ -1,0 +1,26 @@
+{% extends "homebase.html" %}
+
+{% block title %} Home title {% endblock title %}
+{% block keywords %} Home keywords  {% endblock keywords %}
+{% block description %} Home description {% endblock description %}
+
+   <!--Start block sidebar ================ -->
+   {% block sidebar %}
+        {% include 'sidebar.html' %}
+   {% endblock sidebar %}
+
+   
+   <!--Start block slider ================ -->
+   {% block slider %}
+        {% include 'slider.html' %}
+   {% endblock slider %}
+       
+   <!--Start block body  ================ -->
+   {% block body %}
+        {% include 'content.html' %}
+   {% endblock body %}
+
+   <!--Start block footer ================ -->
+   {% block foot %}
+       
+   {% endblock foot %}
