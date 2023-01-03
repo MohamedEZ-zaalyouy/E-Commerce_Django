@@ -5,19 +5,42 @@ from home.models import Setting
 
 # Create your views here.
 
+# ========================================================
+# Create index Views
+# ========================================================
 
 def index(request):
+    setting = Setting.objects.get(pk=1)
+    page = 'home'
+    context = {
+        'setting': setting,
+        'page': page
+    }
+    return render(request, 'index.html', context)
+
+# ========================================================
+# Create About Us Views
+# ========================================================
+
+
+def aboutus(request):
     setting = Setting.objects.get(pk=1)
 
     context = {
         'setting': setting
     }
-    return render(request, 'index.html', context)
+    return render(request, 'aboutus.html', context)
 
 
-def aboutus(request):
-    return HttpResponse("aboutus")
+# ========================================================
+# Create Contact Views
+# ========================================================
 
 
 def contact(request):
-    return HttpResponse("contact")
+    setting = Setting.objects.get(pk=1)
+
+    context = {
+        'setting': setting
+    }
+    return render(request, 'contact.html', context)

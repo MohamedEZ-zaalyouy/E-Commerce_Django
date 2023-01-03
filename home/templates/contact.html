@@ -1,0 +1,83 @@
+{% extends "homebase.html" %}
+
+{% block title %}Contact Us-{{setting.title}}  {% endblock title %}
+{% block keywords %} {{setting.keywords}}  {% endblock keywords %}
+{% block description %} {{setting.description}}  {% endblock description %}
+
+<!--Start block sidebar ================ -->
+    {% block sidebar %}
+    {% include 'sidebar.html' %}
+    {% endblock sidebar %}
+
+   
+   <!--Start block slider ================ -->
+   {% block slider %}
+       
+   {% endblock slider %}
+
+  <!--Start block body  ================ -->
+  {% block body %}
+   <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">Contact Us</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">			
+					<div class="col-md-6">
+                        <form id="checkout-form" class="clearfix"></form>
+                            <div class="billing-details">
+                                <div class="section-title">
+                                    <h3 class="title">Contact Form</h3>
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="name" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="email" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="subject" placeholder="Subject">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="input" type="text" name="message" placeholder="Message" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="submit" value="Send Message" style="background-color: #F8694A;">
+                                </div>
+                            </div>
+                        </form>
+					</div>
+					<div class="col-md-6">
+						<div class="payments-methods">
+							<div class="section-title">
+								<h3 class="title">Contact Information</h3>
+							</div>
+                            <div>
+                                {{setting.contact|safe}}
+                            </div>
+						</div>
+					</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+  {% endblock body %}
+
+
+<!--Start block footer ================ -->
+    {% block foot %}
+       
+    {% endblock foot %}
