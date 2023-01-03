@@ -9,13 +9,21 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'parent', 'status']
     list_filter = ['title', 'status']
 
+# add la table Image en table Product
+
+
+class ProductImageInline(admin.TabularInline):
+    model = Images
+    extra = 5
+
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'status']
+    list_display = ['title', 'category', 'status', 'image_tag']
     list_filter = ['category']
-   # readonly_fields = ('image_tag',)
-   # inlines = [ProductImageInline,ProductVariantsInline,ProductLangInline]
+    readonly_fields = ('image_tag',)
+    inlines = [ProductImageInline]
     prepopulated_fields = {'slug': ('title',)}
+    # ,ProductVariantsInline,ProductLangInline
 
 
 # ===========================
