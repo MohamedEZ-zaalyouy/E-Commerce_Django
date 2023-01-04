@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Setting
+from .models import Setting, ContactMessage
 
 
 class SettingtAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class SettingtAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Setting, SettingtAdmin)
+admin.site.register(ContactMessage)
