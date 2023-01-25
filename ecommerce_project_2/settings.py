@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',  # Richtext Editor Ckeditor
+    'mptt',  # Category Tree Subcategory menu
     'home',
     'product',
 ]
