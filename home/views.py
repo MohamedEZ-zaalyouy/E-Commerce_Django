@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
 from home.models import Setting, ContactForm, ContactMessage
+from product.models import Category
 
 
 # Create your views here.
@@ -12,10 +13,13 @@ from home.models import Setting, ContactForm, ContactMessage
 
 def index(request):
     setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
     page = 'home'
     context = {
         'setting': setting,
-        'page': page
+        'page': page,
+        'category': category,
+
     }
     return render(request, 'index.html', context)
 
