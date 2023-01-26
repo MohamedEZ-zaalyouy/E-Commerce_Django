@@ -8,3 +8,4 @@
 ## 6 -Django E-Commerce: Implemet Richtext Editor Ckeditor
 ## 7 -Django E-Commerce: Pages de contact
 ## 8 -Django E-Commerce: Category Tree Subcategory menu('mptt')
+## 10 -Django E Commerce Automatically Creating Slug for Category and Product 
