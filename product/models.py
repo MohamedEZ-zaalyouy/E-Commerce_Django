@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.models import MPTTModel, TreeForeignKey
+from django.urls import reverse
 
 # Create your models here.
 
@@ -31,6 +32,9 @@ class Category(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['title']
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
 
     def __str__(self):                           # __str__ method elaborated later in
         # post.  use __unicode__ in place of
@@ -77,6 +81,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
 
     # method to create a fake table field in read only mode
     def image_tag(self):
