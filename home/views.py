@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
 from home.models import Setting, ContactForm, ContactMessage
-from product.models import Category
+from product.models import Category, Product
 
 
 # Create your views here.
@@ -65,3 +65,12 @@ def contact(request):
         'form': form,
     }
     return render(request, 'contact.html', context)
+
+# ========================================================
+# Create category_products Views
+# ========================================================
+
+
+def category_products(request, id, slug):
+    products = Product.objects.filter(category_id=id)
+    return HttpResponse(products)
