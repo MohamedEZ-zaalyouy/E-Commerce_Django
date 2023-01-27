@@ -17,3 +17,5 @@
 ## 10 -Django E Commerce Automatically Creating Slug for Category and Product
 
 ## 11 -Django E Commerce Dynamic Slider in homepage
+
+## 12 -Django E Commerce products with images on homepage

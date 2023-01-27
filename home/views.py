@@ -15,12 +15,18 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     product_slider = Product.objects.all().order_by('-id')[:4]
+    product_latest = Product.objects.all().order_by(
+        '-id')[:4]  # last 4 products
+    product_picked = Product.objects.all().order_by(
+        '?')[:4]  # Random selected 4 products
     page = 'home'
     context = {
         'setting': setting,
         'page': page,
         'category': category,
         'product_slider': product_slider,
+        'product_latest': product_latest,
+        'product_picked': product_picked,
 
     }
     return render(request, 'index.html', context)
