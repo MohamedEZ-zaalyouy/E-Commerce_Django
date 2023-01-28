@@ -4,13 +4,14 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, reques
 from home.models import Setting, ContactForm, ContactMessage
 from product.models import Category, Product
 from home.forms import SearchForm
-
+import json
 
 # Create your views here.
 
 # ========================================================
 # Create index Views
 # ========================================================
+
 
 def index(request):
     setting = Setting.objects.get(pk=1)
@@ -116,3 +117,23 @@ def search(request):
         return render(request, 'search_products.html', context)
 
     return HttpResponseRedirect('/')
+
+# ========================================================
+# Create search_auto Views
+# ========================================================
+
+
+def search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        product = Product.objects.filter(title__icontains=q)
+        results = []
+        for rs in product:
+            product_json = {}
+            product_json = rs.title
+            results.append(product_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
