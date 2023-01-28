@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
 from home.models import Setting, ContactForm, ContactMessage
 from product.models import Category, Product
+from home.forms import SearchForm
 
 
 # Create your views here.
@@ -87,3 +88,28 @@ def category_products(request, id, slug):
         'products': products,
     }
     return render(request, 'category_products.html', context)
+
+# ========================================================
+# Create search Views
+# ========================================================
+
+
+def search(request):
+    if request.method == 'POST':  # check post
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query']  # get form input data
+            catid = form.cleaned_data['catid']
+            if catid == 0:
+                # SELECT * FROM product WHERE title LIKE '%query%'
+                products = Product.objects.filter(title__icontains=query)
+            else:
+                products = Product.objects.filter(
+                    title__icontains=query, category_id=catid)
+
+            category = Category.objects.all()
+            context = {'products': products, 'query': query,
+                       'category': category}
+            return render(request, 'search_products.html', context)
+
+    return HttpResponseRedirect('/')

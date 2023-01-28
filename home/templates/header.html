@@ -58,8 +58,11 @@
 
         <!-- Search -->
         <div class="header-search">
-          <form>
+          <form action="/search/" method="POST">
+            {% csrf_token %}
             <input
+              id="query"
+              name="query"
               class="input search-input"
               type="text"
               placeholder="Enter your keyword"
