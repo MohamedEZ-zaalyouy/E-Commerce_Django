@@ -108,8 +108,11 @@ def search(request):
                     title__icontains=query, category_id=catid)
 
             category = Category.objects.all()
-            context = {'products': products, 'query': query,
-                       'category': category}
-            return render(request, 'search_products.html', context)
+            context = {
+                'products': products,
+                'query': query,
+                'category': category}
+
+        return render(request, 'search_products.html', context)
 
     return HttpResponseRedirect('/')
