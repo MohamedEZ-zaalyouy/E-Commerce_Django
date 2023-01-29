@@ -25,3 +25,5 @@
 ## 14 -Django E Commerce Search Products
 
 ## 15 -Django E Commerce Search Auto Products
+
+## 16 -Django E Commerce Product detail page with image gallery
