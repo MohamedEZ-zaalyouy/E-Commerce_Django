@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
 from home.models import Setting, ContactForm, ContactMessage
-from product.models import Category, Product, Images
+from product.models import Category, Product, Images, Comment
 from home.forms import SearchForm
 import json
 
@@ -147,9 +147,11 @@ def product_detail(request, id, slug):
     category = Category.objects.all()
     product = Product.objects.get(pk=id)
     images = Images.objects.filter(product_id=id)
+    comments = Comment.objects.filter(product_id=id, status='True')
     context = {
         'category': category,
         'product': product,
-        'images': images
+        'images': images,
+        'comments': comments,
     }
     return render(request, 'product_detail.html', context)
