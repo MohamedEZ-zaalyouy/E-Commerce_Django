@@ -101,13 +101,16 @@
             </div>
 
             <div class="product-btns">
-              <div class="qty-input">
-                <span class="text-uppercase">QTY: </span>
-                <input class="input" type="number" />
-              </div>
-              <button class="primary-btn add-to-cart">
-                <i class="fa fa-shopping-cart"></i> Add to Cart
-              </button>
+              <form action="/order/addtoshopcart/{{product.id}}" method="post">
+                {% csrf_token %}
+                <div class="qty-input">
+                  <span class="text-uppercase">QTY: </span>
+                  <input name="quantity" class="input" type="number" value="1" min="1" max="{{product.amount}}"/>
+                </div>
+                <button type="submit" class="primary-btn add-to-cart">
+                  <i class="fa fa-shopping-cart"></i> Add to Cart
+                </button>
+              </form>
               <div class="pull-right">
                 <button class="main-btn icon-btn">
                   <i class="fa fa-heart"></i>
@@ -138,32 +141,42 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="product-reviews">
-                      
                       {% for rs in comments %}
-                                                
-                      <div class="single-review">
 
+                      <div class="single-review">
                         <div class="review-heading">
                           <div>
-                            <a href="#"><i class="fa fa-user-o"></i> {{rs.user.first_name }}</a>
+                            <a href="#"
+                              ><i class="fa fa-user-o"></i> {{rs.user.first_name
+                              }}</a
+                            >
                           </div>
                           <div>
                             <a href="#"
-                              ><i class="fa fa-clock-o"></i> {{rs.create_at }}</a
+                              ><i class="fa fa-clock-o"></i> {{rs.create_at
+                              }}</a
                             >
                           </div>
                           <div class="review-rating pull-right">
-                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
+                            <i
+                              class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"
+                            ></i>
+                            <i
+                              class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"
+                            ></i>
+                            <i
+                              class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"
+                            ></i>
+                            <i
+                              class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"
+                            ></i>
+                            <i
+                              class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"
+                            ></i>
                           </div>
                         </div>
                         <div class="review-body">
-                          <p>
-                           {{rs.comment}}
-                          </p>
+                          <p>{{rs.comment}}</p>
                         </div>
                       </div>
                       {% endfor %}
@@ -179,19 +192,17 @@
                   </div>
                   <div class="col-md-6">
                     <h4 class="text-uppercase">Write Your Review</h4>
-                    {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{message.tags}}" role="alert">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                    {% endif %}
+                    {% if messages %} {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                      {{ message }}
+                    </div>
+                    {% endfor %} {% endif %}
                     <form
                       class="review-form"
                       action="/product/addcomment/{{product.id}}"
                       method="post"
                     >
-                    {% csrf_token %}
+                      {% csrf_token %}
                       <div class="form-group">
                         <input
                           name="subject"
