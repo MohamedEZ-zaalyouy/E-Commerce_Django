@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mptt',  # Category Tree Subcategory menu
     'home',
     'product',
+    'order',
 ]
 
 MIDDLEWARE = [

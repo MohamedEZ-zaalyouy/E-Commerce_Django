@@ -20,11 +20,14 @@ from django.urls import path, include
 from home import views
 
 urlpatterns = [
+    path('', include("home.urls")),
     path('admin/', admin.site.urls),
     path('home/', include("home.urls")),
-    path('', include("home.urls")),
     path('product/', include("product.urls")),
+    path('order/', include("order.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+
+
     path('category/<int:id>/<slug:slug>',
          views.category_products, name='category_products'),
     path('search/', views.search, name='search'),
