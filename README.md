@@ -31,3 +31,5 @@
 ## 17 -Django E Commerce Product Review Comment Rating
 
 ## 18 -Django E Commerce Shop cart Add list delete items
+
+## 19 -Django E Commerce user profile information
