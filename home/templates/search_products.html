@@ -7,17 +7,10 @@
 {% block description %} {{setting.description}} {% endblock description %}
 
 <!--Start block sidebar ================ -->
-{% block sidebar %} 
-
-{% include 'sidebar.html' %} 
-
-{% endblock sidebar %}
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
 
 <!--Start block slider ================ -->
-{% block slider %}
-
-
-{% endblock slider %}
+{% block slider %} {% endblock slider %}
 
 <!--Start block body  ================ -->
 {% block body %}
@@ -113,7 +106,7 @@
                       <i class="fa fa-exchange"></i>
                     </button>
                     <a
-                      href="/order/addtoshopcart/{{product.id}}"
+                      href="/order/addtoshopcart/{{rs.id}}"
                       class="primary-btn add-to-cart"
                     >
                       <i class="fa fa-shopping-cart"></i> Add to Cart
