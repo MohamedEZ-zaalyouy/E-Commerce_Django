@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
 from home.models import Setting, ContactForm, ContactMessage
 from product.models import Category, Product, Images, Comment
+from order.models import ShopCart
 from home.forms import SearchForm
 import json
 
@@ -22,6 +23,15 @@ def index(request):
     product_picked = Product.objects.all().order_by(
         '?')[:4]  # Random selected 4 products
     page = 'home'
+    # start shop cart min en home page
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    total = 0
+    nbr_ord = 0
+    for rs in shopcart:
+        total += rs.product.price * rs.quantity
+        nbr_ord += 1
+    # end shop cart min en home page
     context = {
         'setting': setting,
         'page': page,
@@ -29,6 +39,9 @@ def index(request):
         'product_slider': product_slider,
         'product_latest': product_latest,
         'product_picked': product_picked,
+        'shopcart': shopcart,
+        'total': total,
+        'nbr_ord': nbr_ord,
 
     }
     return render(request, 'index.html', context)

@@ -7,29 +7,22 @@
 {% block description %} {{setting.description}} {% endblock description %}
 
 <!--Start block sidebar ================ -->
-{% block sidebar %} 
-
-{% include 'sidebar.html' %} 
-
-{% endblock sidebar %}
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
 
 <!--Start block slider ================ -->
-{% block slider %}
-
-
-{% endblock slider %}
+{% block slider %} {% endblock slider %}
 
 <!--Start block body  ================ -->
 {% block body %}
 <!-- BREADCRUMB -->
-	<div id="breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="/">Home</a></li>
-				<li class="active">ShopCart</li>
-			</ul>
-		</div>
-	</div>
+<div id="breadcrumb">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">ShopCart</li>
+    </ul>
+  </div>
+</div>
 <!-- /BREADCRUMB -->
 <!-- section -->
 <div class="section">
@@ -54,18 +47,37 @@
               </tr>
             </thead>
             <tbody>
-              
               {% for rs in shopcart %}
               <tr>
-                <td class="thumb"><img src="{{rs.product.image.url}}" alt=""></td>
-                <td class="details">
-                  <a href="/product/{{rs.product.id}}/{{rs.product.slug}}">{{rs.product.title}}</a>
+                <td class="thumb">
+                  <img src="{{rs.product.image.url}}" alt="" />
                 </td>
-                <td class="price text-center"><strong>{{rs.product.price}}</strong><br><del class="font-weak"><small>-20%</small></del></td>
-                
-                <td class="total text-center"><strong class="primary-color">{{rs.quantity}}</strong></td>
-                <td class="total text-center"><strong class="primary-color">${{rs.amount}}</strong></td>
-                <td class="text-right"><a href="/order/deletefromcart/{{rs.id}}" class="main-btn icon-btn" onclick="return confirm('Delete! Are you sure?')"><i class="fa fa-close"></i></a></td>
+                <td class="details">
+                  <a href="/product/{{rs.product.id}}/{{rs.product.slug}}"
+                    >{{rs.product.title}}</a
+                  >
+                </td>
+                <td class="price text-center">
+                  <strong>{{rs.product.price}}</strong><br /><del
+                    class="font-weak"
+                    ><small>-20%</small></del
+                  >
+                </td>
+
+                <td class="total text-center">
+                  <strong class="primary-color">{{rs.quantity}}</strong>
+                </td>
+                <td class="total text-center">
+                  <strong class="primary-color">${{rs.amount}}</strong>
+                </td>
+                <td class="text-right">
+                  <a
+                    href="/order/deletefromcart/{{rs.id}}"
+                    class="main-btn icon-btn"
+                    onclick="return confirm('Delete! Are you sure?')"
+                    ><i class="fa fa-trash"></i
+                  ></a>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
@@ -91,7 +103,6 @@
             <button class="primary-btn">Place Order</button>
           </div>
         </div>
-
       </div>
     </div>
     <!-- /row -->
