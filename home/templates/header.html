@@ -6,6 +6,11 @@
     <div class="container">
       <div class="pull-left">
         <span>Welcome to Med-shop!</span>
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %} {% endif %}
       </div>
       <div class="pull-right">
         <ul class="header-top-links">
@@ -202,7 +207,7 @@
                 <div class="shopping-cart-btns">
                   <button class="main-btn">View Cart</button>
                   <button class="primary-btn">
-                    Checkout <i class="fa fa-arrow-circle-right"></i>
+                    <a href="/shopcart/">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                   </button>
                 </div>
               </div>
