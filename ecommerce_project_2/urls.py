@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views
 from order import views as OrderViews
+from user import views as UserViews
 
 urlpatterns = [
     path('', include("home.urls")),
@@ -34,6 +35,9 @@ urlpatterns = [
          views.category_products, name='category_products'),
     path('search/', views.search, name='search'),
     path('shopcart/', OrderViews.shopcart, name='shopcart'),
+    path('login/', UserViews.login_form, name='login_form'),
+    path('logout/', UserViews.logout_func, name='logout_func'),
+    path('signup/', UserViews.signup, name='signup'),
     path('search_auto/', views.search_auto, name='search_auto'),
     path('product/<int:id>/<slug:slug>',
          views.product_detail, name='product_detail'),
