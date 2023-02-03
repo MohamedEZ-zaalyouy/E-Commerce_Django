@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.http import HttpResponse, HttpResponseRedirect
 from product.models import Category
 from user.models import UserProfile
+from user.forms import SignUpForm
 # Create your views here.
 
 # ============================================
@@ -60,8 +61,30 @@ def logout_func(request):
 
 
 def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()  # completed sign up
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            # Create data in profile table for user
+            current_user = request.user
+            data = UserProfile()
+            data.user_id = current_user.id
+            data.image = "images/users/user.png"
+            data.save()
+            messages.success(request, 'Your account has been created!')
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request, form.errors)
+            return HttpResponseRedirect('/signup')
+
+    form = SignUpForm()
     category = Category.objects.all()
     context = {
         'category': category,
+        'form': form,
     }
     return render(request, 'signup.html', context)

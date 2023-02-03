@@ -35,3 +35,5 @@
 ## 19 -Django E Commerce user profile information
 
 ## 20 -Django E Commerce user custom login logout user image
+
+## 21 -Django E Commerce user custom sign Up user
