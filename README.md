@@ -37,3 +37,5 @@
 ## 20 -Django E Commerce user custom login logout user image
 
 ## 21 -Django E Commerce user custom sign Up user
+
+## 22 -Django E Commerce Order Prudacts
