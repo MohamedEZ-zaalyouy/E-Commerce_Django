@@ -40,6 +40,8 @@
 
 ## 22 -Django E Commerce Order Prudacts
 
-## 23 Django E Commerce User Menu & Panel Profile Page
+## 23 -Django E Commerce User Menu & Panel Profile Page
 
-## 24 Django E Commerce Update Change User & Profile Information
+## 24 -Django E Commerce Update Change User & Profile Information
+
+## 25 -Django E Commerce Change User Password
