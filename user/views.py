@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.http import HttpResponse, HttpResponseRedirect
 from product.models import Category
 from user.models import UserProfile
-from user.forms import SignUpForm
+from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
 # ============================================
@@ -12,14 +12,14 @@ from django.contrib.auth.decorators import login_required
 # ============================================
 
 
-@login_required(login_url='/login') # Check login
+@login_required(login_url='/login')  # Check login
 def index(request):
     category = Category.objects.all()
     current_user = request.user  # Access User Session information
     profile = UserProfile.objects.get(user_id=current_user.id)
     context = {'category': category,
-               'profile':profile}
-    return render(request,'user_profile.html',context)
+               'profile': profile}
+    return render(request, 'user_profile.html', context)
 
 
 # ============================================
@@ -94,3 +94,35 @@ def signup(request):
         'form': form,
     }
     return render(request, 'signup.html', context)
+
+# ============================================
+#     Create user_update views here.
+# ============================================
+
+
+@login_required(login_url='/login')  # Check login
+def user_update(request):
+    if request.method == 'POST':
+        # request.user is user  data
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your account has been updated!')
+            return HttpResponseRedirect('/user')
+    else:
+        category = Category.objects.all()
+        user_form = UserUpdateForm(instance=request.user)
+        # "userprofile" model -> OneToOneField relatinon with user
+        profile_form = ProfileUpdateForm(instance=request.user.userprofile)
+        context = {
+            'category': category,
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return render(request, 'user_update.html', context)
+# ============================================
+#     Create user_update views here.
+# ============================================
