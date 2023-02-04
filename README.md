@@ -39,3 +39,5 @@
 ## 21 -Django E Commerce user custom sign Up user
 
 ## 22 -Django E Commerce Order Prudacts
+
+## 23 Django E Commerce User Menu & Panel Profile Page

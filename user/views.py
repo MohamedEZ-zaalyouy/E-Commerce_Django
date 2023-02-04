@@ -5,15 +5,21 @@ from django.http import HttpResponse, HttpResponseRedirect
 from product.models import Category
 from user.models import UserProfile
 from user.forms import SignUpForm
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 # ============================================
 #     Create index views here.
 # ============================================
 
 
+@login_required(login_url='/login') # Check login
 def index(request):
-    return HttpResponse(" Hi user")
+    category = Category.objects.all()
+    current_user = request.user  # Access User Session information
+    profile = UserProfile.objects.get(user_id=current_user.id)
+    context = {'category': category,
+               'profile':profile}
+    return render(request,'user_profile.html',context)
 
 
 # ============================================

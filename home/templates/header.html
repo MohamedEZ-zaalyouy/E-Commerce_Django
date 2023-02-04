@@ -115,7 +115,11 @@
               aria-expanded="true"
             >
               <div class="header-btns-icon">
-                <img src="{{request.session.userimage}}" alt="" style="height: 40px; width: 40px; border-radius: 20%;">
+                <img
+                  src="{{request.session.userimage}}"
+                  alt=""
+                  style="height: 40px; width: 40px; border-radius: 20%"
+                />
               </div>
               <strong class="text-uppercase"
                 >{{user.first_name}} <i class="fa fa-caret-down"></i
@@ -130,16 +134,30 @@
             {% endif %}
             <ul class="custom-menu">
               <li>
-                <a href="#"><i class="fa fa-user-o"></i> My Account</a>
+                <a href="/user"><i class="fa fa-user-o"></i> User Profile</a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a>
+                <a href="/user/orders"><i class="fa fa-check"></i> My Orders</a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-exchange"></i> Compare</a>
+                <a href="/user/orders_product"
+                  ><i class="fa fa-heart-o"></i> My Order Product</a
+                >
               </li>
               <li>
-                <a href="#"><i class="fa fa-check"></i> Checkout</a>
+                <a href="/user/comments"
+                  ><i class="fa fa-exchange"></i> My Comments</a
+                >
+              </li>
+              <li>
+                <a href="/user/favorits"
+                  ><i class="fa fa-heart-o"></i>My Favorits</a
+                >
+              </li>
+              <li>
+                <a href="/user/products"
+                  ><i class="fa fa-check"> </i>My Products</a
+                >
               </li>
               <li>
                 <a href="/logout"><i class="fa fa-unlock-alt"></i> Logout</a>
