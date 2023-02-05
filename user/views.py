@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.http import HttpResponse, HttpResponseRedirect
-from product.models import Category
+from product.models import Category, Comment
 from user.models import UserProfile
 from order.models import Order, OrderProduct
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
@@ -223,3 +223,30 @@ def user_order_product_detail(request, id, oid):
         'orderitems': orderitems,
     }
     return render(request, 'user_order_detail.html', context)
+
+# ============================================
+#     Create user_comments views here.
+# ============================================
+
+
+def user_comments(request):
+    category = Category.objects.all()
+    current_user = request.user
+    comments = Comment.objects.filter(user_id=current_user.id)
+    context = {
+        'category': category,
+        'comments': comments,
+    }
+    return render(request, 'user_comments.html', context)
+
+
+# ============================================
+#     Create user_deletecomment views here.
+# ============================================
+
+@login_required(login_url='/login')  # Check login
+def user_deletecomment(request, id):
+    current_user = request.user
+    Comment.objects.filter(id=id, user_id=current_user.id).delete()
+    messages.success(request, 'Comment deleted..')
+    return HttpResponseRedirect('/user/comments')

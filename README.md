@@ -47,3 +47,5 @@
 ## 25 -Django E Commerce Change User Password
 
 ## 26 -Django E Commerce User Order Product List and Detail
+
+## 27 -Django E Commerce User Comments List and Delete
