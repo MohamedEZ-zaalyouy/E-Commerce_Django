@@ -13,7 +13,8 @@
         <div class="category-nav show-on-click">
           {% endif %}
           <span class="category-header"
-            >Categories <i class="fa fa-list"></i></span>
+            >Categories <i class="fa fa-list"></i
+          ></span>
 
           {% load mptt_tags %}
           <ul class="category-list">
@@ -22,10 +23,16 @@
               <a
                 href="/category/{{ node.id }}/{{ node.slug }}"
                 class="dropdown-toggle"
-                {% if not node.is_leaf_node %}
+                {%
+                if
+                not
+                node.is_leaf_node
+                %}
                 data-toggle="dropdown"
                 aria-expanded="true"
-                {% endif %}
+                {%
+                endif
+                %}
                 >{{ node.title }}<i class="fa fa-angle-right"></i
               ></a>
               <div class="custom-menu">
@@ -36,7 +43,7 @@
                       <li>
                         <h3 class="list-links-title">Sub Categories</h3>
                       </li>
-                      <li> <a href="#">{{ children }}</a></li>
+                      <li><a href="#">{{ children }}</a></li>
                     </ul>
                     {% endif %}
                     <hr class="hidden-md hidden-lg" />
@@ -56,7 +63,6 @@
             <li><a href="/">Home</a></li>
             <li><a href="#">Shop</a></li>
             <li><a href="/about">About Us</a></li>
-            <li><a href="#">Sales</a></li>
             <li><a href="/contact">Contact</a></li>
             <li class="dropdown default-dropdown">
               <a
@@ -72,6 +78,7 @@
                 <li><a href="checkout.html">Checkout</a></li>
               </ul>
             </li>
+            <li><a href="/faq">Q&F</a></li>
           </ul>
         </div>
         <!-- menu nav -->

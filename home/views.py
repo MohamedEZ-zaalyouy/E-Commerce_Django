@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
-from home.models import Setting, ContactForm, ContactMessage
+from home.models import Setting, ContactForm, ContactMessage, FAQ
 from product.models import Category, Product, Images, Comment
 from order.models import ShopCart
 from home.forms import SearchForm
@@ -170,3 +170,18 @@ def product_detail(request, id, slug):
         'comments': comments,
     }
     return render(request, 'product_detail.html', context)
+
+
+# ========================================================
+# Create FAQ Views
+# ========================================================
+
+
+def faq(request):
+    faq = FAQ.objects.filter(status="True").order_by("ordernumber")
+    category = Category.objects.all()
+    context = {
+        'category': category,
+        'faq': faq,
+    }
+    return render(request, 'faq.html', context)

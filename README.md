@@ -51,3 +51,5 @@
 ## 27 -Django E Commerce User Comments List and Delete
 
 ## 28 -Django E Commerce Count and Average of Products Reviews
+
+## 29 -Django E Commerce Frequently Asked Questions FAQ with Jquery ui Accordion
