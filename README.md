@@ -49,3 +49,5 @@
 ## 26 -Django E Commerce User Order Product List and Detail
 
 ## 27 -Django E Commerce User Comments List and Delete
+
+## 28 -Django E Commerce Count and Average of Products Reviews

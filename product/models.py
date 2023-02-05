@@ -5,7 +5,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-
+from django.db.models import Avg, Count
 # Create your models here.
 
 # ====================================================================
@@ -96,6 +96,24 @@ class Product(models.Model):
 
     image_tag.short_description = 'Image'
 
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
+
+    def avaregereview(self):
+        reviews = Comment.objects.filter(
+            product=self, status='True').aggregate(avarage=Avg('rate'))
+        avg = 0
+        if reviews["avarage"] is not None:
+            avg = float(reviews["avarage"])
+        return avg
+
+    def countreview(self):
+        reviews = Comment.objects.filter(
+            product=self, status='True').aggregate(count=Count('id'))
+        cnt = 0
+        if reviews["count"] is not None:
+            cnt = int(reviews["count"])
+        return cnt
 # ====================================================================
 #  Start class Images
 # ====================================================================
