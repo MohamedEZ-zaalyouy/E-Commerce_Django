@@ -45,3 +45,5 @@
 ## 24 -Django E Commerce Update Change User & Profile Information
 
 ## 25 -Django E Commerce Change User Password
+
+## 26 -Django E Commerce User Order Product List and Detail

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.http import HttpResponse, HttpResponseRedirect
 from product.models import Category
 from user.models import UserProfile
+from order.models import Order, OrderProduct
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
@@ -152,3 +153,73 @@ def user_password(request):
             'category': category
         }
         return render(request, 'user_password.html', context)
+
+# ============================================
+#     Create user_orders views here.
+# ============================================
+
+
+@login_required(login_url='/login')  # Check login
+def user_orders(request):
+    category = Category.objects.all()
+    current_user = request.user
+    orders = Order.objects.filter(user_id=current_user.id)
+    context = {
+        'category': category,
+        'orders': orders,
+    }
+    return render(request, 'user_orders.html', context)
+
+
+# ============================================
+#     Create user_orderdetail views here.
+# ============================================
+
+
+@login_required(login_url='/login')  # Check login
+def user_orderdetail(request, id):
+    category = Category.objects.all()
+    current_user = request.user
+    order = Order.objects.get(user_id=current_user.id, id=id)
+    orderitems = OrderProduct.objects.filter(order_id=id)
+    context = {
+        'category': category,
+        'order': order,
+        'orderitems': orderitems,
+    }
+    return render(request, 'user_order_detail.html', context)
+
+# ============================================
+#     Create user_order_product views here.
+# ============================================
+
+
+@login_required(login_url='/login')  # Check login
+def user_order_product(request):
+    category = Category.objects.all()
+    current_user = request.user
+    order_product = OrderProduct.objects.filter(
+        user_id=current_user.id).order_by('-id')
+    context = {
+        'category': category,
+        'order_product': order_product,
+    }
+    return render(request, 'user_order_products.html', context)
+
+# ============================================
+#     Create user_order_product_detail views here.
+# ============================================
+
+
+@login_required(login_url='/login')  # Check login
+def user_order_product_detail(request, id, oid):
+    category = Category.objects.all()
+    current_user = request.user
+    order = Order.objects.get(user_id=current_user.id, id=oid)
+    orderitems = OrderProduct.objects.filter(id=id, user_id=current_user.id)
+    context = {
+        'category': category,
+        'order': order,
+        'orderitems': orderitems,
+    }
+    return render(request, 'user_order_detail.html', context)
