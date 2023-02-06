@@ -69,7 +69,9 @@ Variants
 variant (Noe, Size-Color, Size, Color)
   <li>Install image thumbnails</li>
 pip install django-admin-thumbnails
-Define thumbnails variants images 
+
+Define thumbnails variants images
+
   <li>Set Admin for new models</li>
 Color,
 Size,
