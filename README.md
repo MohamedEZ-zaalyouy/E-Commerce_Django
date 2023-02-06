@@ -53,3 +53,23 @@
 ## 28 -Django E Commerce Count and Average of Products Reviews
 
 ## 29 -Django E Commerce Frequently Asked Questions FAQ with Jquery ui Accordion
+
+## 30 -Django E Commerce Product Attributes Variants Amazon style Size Color #1
+
+![](imgscrin/varaint.png)
+
+Product Attributes Variants Amazon style Size Color (Database Model and Admin)
+1- Create Models
+Color,
+Size,
+Variants
+2- Add variant filed to Product
+variant (Noe, Size-Color, Size, Color)
+3- Install image thumbnails
+pip install django-admin-thumbnails
+Define thumbnails variants images  
+4-Set Admin for new models
+Color,
+Size,
+Variants
+4-Set Variants inline for Product in admin
