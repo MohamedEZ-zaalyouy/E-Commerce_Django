@@ -75,4 +75,22 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
         Size,
         Variants
     <li>Set Variants inline for Product in admin</li>
+    <li>Product Detail</li>
+        Change product detail function  -views
+        Change product link depending on variant --templates
+        Add variants on product detail --templates
+        Apply Ajax for getting Product variant --templates
+        Add ajax function  -- View
+        Select Variant Size, Color -templates
+    <li>Shopcart</li>
+        Define  variant relation in shopcart -- Model
+        Add variant id to shopcart --views
+        Get variant price in list --templates
+    <li>Order</li>
+        Define variant relation in order  -- Model;
+        Add variant_id to order table   -- views;
+        Add variant in reduction from stock code -  views;
+        Get variant information in order list list --templates;
+    <li>User Orders product </li>
+         Add variant image in order product list;
 </ol>
