@@ -1,6 +1,7 @@
+import admin_thumbnails
 from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin
-from .models import Category, Product, Images, Comment
+from .models import Category, Product, Images, Comment, Color, Size, Variants
 
 
 # ===========================
@@ -49,18 +50,38 @@ class CategoryAdmin2(DraggableMPTTAdmin):
 # add la table Image en table Product
 
 
+@admin_thumbnails.thumbnail('image')
 class ProductImageInline(admin.TabularInline):
     model = Images
-    extra = 5
+    readonly_fields = ('id',)
+    extra = 1
+
+
+class ProductVariantsInline(admin.TabularInline):
+    model = Variants
+    readonly_fields = ('image_tag',)
+    extra = 1
+    show_change_link = True
+
+
+class ProductLangInline(admin.TabularInline):
+    # model = ProductLang
+    extra = 1
+    show_change_link = True
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@ admin_thumbnails.thumbnail('image')
+class ImagesAdmin(admin.ModelAdmin):
+    list_display = ['image', 'title', 'image_thumbnail']
 
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'status', 'image_tag']
     list_filter = ['category']
     readonly_fields = ('image_tag',)
-    inlines = [ProductImageInline]
-    prepopulated_fields = {'slug': ('title',)}  # auto slug
-    # ,ProductVariantsInline,ProductLangInline
+    inlines = [ProductImageInline, ProductVariantsInline]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -70,10 +91,30 @@ class CommentAdmin(admin.ModelAdmin):
                        'user', 'product', 'rate', 'id')
 
 
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ['name', 'code', 'color_tag']
+
+
+class SizeAdmin(admin.ModelAdmin):
+    list_display = ['name', 'code']
+
+
+class VariantsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'product', 'color',
+                    'size', 'price', 'quantity', 'image_tag']
+
+
+class ImagesAdmin(admin.ModelAdmin):
+    list_display = ['title', 'id']
+
+
 # ===========================
 # Register your models here.
 # ===========================
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Images)
+admin.site.register(Images, ImagesAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Color, ColorAdmin)
+admin.site.register(Size, SizeAdmin)
+admin.site.register(Variants, VariantsAdmin)

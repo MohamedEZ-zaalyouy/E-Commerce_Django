@@ -61,20 +61,18 @@
 Product Attributes Variants Amazon style Size Color (Database Model and Admin)
 
 <ol>
-  <li>Create Models</li>
-Color,
-Size,
-Variants
-  <li>Add variant filed to Product</li>
-variant (Noe, Size-Color, Size, Color)
-  <li>Install image thumbnails</li>
-pip install django-admin-thumbnails
-
-Define thumbnails variants images
-
-  <li>Set Admin for new models</li>
-Color,
-Size,
-Variants
-<li>Set Variants inline for Product in admin</li>
+    <li>Create Models</li>
+        Color,
+        Size,
+        Variants
+    <li>Add variant filed to Product</li>
+        variant (Noe, Size-Color, Size, Color)
+    <li>Install image thumbnails</li>
+        pip install django-admin-thumbnails
+        Define thumbnails variants images
+    <li> Set Admin for new models </li>
+        Color,
+        Size,
+        Variants
+    <li>Set Variants inline for Product in admin</li>
 </ol>
