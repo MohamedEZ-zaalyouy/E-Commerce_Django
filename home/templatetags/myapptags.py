@@ -17,7 +17,23 @@ def categorylist():
 @register.simple_tag
 def shopcartcount(userid):
     count = ShopCart.objects.filter(user_id=userid).count()
-    return count
+    # start shop cart min en home page
+    shopcart = ShopCart.objects.filter(user_id=userid)
+
+    total = 0
+    for rs in shopcart:
+        if rs.product.variant == 'None':
+            total += rs.product.price * rs.quantity
+        else:
+            total += rs.variant.price * rs.quantity
+
+    # end shop cart min en home page
+    context = {
+        'count': count,
+        'shopcart': shopcart,
+        'total': total,
+    }
+    return context
 
 # views-> "category =  categoryTree(0,'','tr')"  html-> "ategoryTree 0 '' LANGUAGE_CODE as category"
 
