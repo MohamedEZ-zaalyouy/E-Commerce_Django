@@ -42,6 +42,7 @@ urlpatterns = [
     path('product/<int:id>/<slug:slug>',
          views.product_detail, name='product_detail'),
     path('faq/', views.faq, name='faq'),
+    path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
 ]
 
 if settings.DEBUG:
