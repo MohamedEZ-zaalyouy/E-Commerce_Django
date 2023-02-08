@@ -200,10 +200,9 @@ def user_order_product(request):
     current_user = request.user
     order_product = OrderProduct.objects.filter(
         user_id=current_user.id).order_by('-id')
-    context = {
-        'category': category,
-        'order_product': order_product,
-    }
+    context = {'category': category,
+               'order_product': order_product,
+               }
     return render(request, 'user_order_products.html', context)
 
 # ============================================

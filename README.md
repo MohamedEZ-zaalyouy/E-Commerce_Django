@@ -54,7 +54,7 @@
 
 ## 29 -Django E Commerce Frequently Asked Questions FAQ with Jquery ui Accordion
 
-## 30 -Django E Commerce Product Attributes Variants Amazon style Size Color #1
+## 30 -Django E Commerce Product Attributes Variants Amazon style Size Color
 
 ![](imgscrin/varaint.png)
 

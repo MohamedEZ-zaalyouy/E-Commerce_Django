@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.utils.crypto import get_random_string
 from django.http import HttpResponse, HttpResponseRedirect
 from order.models import ShopCart, ShopCartForm, OrderForm, Order, OrderProduct
-from product.models import Category, Product
+from product.models import Category, Product, Variants
 from user.models import UserProfile
 
 # Create your views here.
@@ -127,16 +127,18 @@ def orderproduct(request):
     shopcart = ShopCart.objects.filter(user_id=current_user.id)
     total = 0
     for rs in shopcart:
-        #     if rs.product.variant == 'None':
-        total += rs.product.price * rs.quantity
-    #     else:
-    #         total += rs.variant.price * rs.quantity
+        if rs.product.variant == 'None':
+            total += rs.product.price * rs.quantity
+        else:
+            total += rs.variant.price * rs.quantity
 
     if request.method == 'POST':  # if there is a post
         form = OrderForm(request.POST)
+        # return HttpResponse(request.POST.items())
         if form.is_valid():
             # Send Credit card to bank,  If the bank responds ok, continue, if not, show the error
             # ..............
+
             data = Order()
             # get product quantity from form
             data.first_name = form.cleaned_data['first_name']
@@ -157,13 +159,22 @@ def orderproduct(request):
                 detail.product_id = rs.product_id
                 detail.user_id = current_user.id
                 detail.quantity = rs.quantity
-                detail.price = rs.product.price
+                if rs.product.variant == 'None':
+                    detail.price = rs.product.price
+                else:
+                    detail.price = rs.variant.price
+                detail.variant_id = rs.variant_id
                 detail.amount = rs.amount
                 detail.save()
                 # ***Reduce quantity of sold product from Amount of Product
-                product = Product.objects.get(id=rs.product_id)
-                product.amount -= rs.quantity
-                product.save()
+                if rs.product.variant == 'None':
+                    product = Product.objects.get(id=rs.product_id)
+                    product.amount -= rs.quantity
+                    product.save()
+                else:
+                    variant = Variants.objects.get(id=rs.product_id)
+                    variant.quantity -= rs.quantity
+                    variant.save()
                 # ************ <> *****************
 
             # Clear & Delete shopcart
@@ -184,4 +195,4 @@ def orderproduct(request):
                'form': form,
                'profile': profile,
                }
-    return render(request, 'order_form.html', context)
+    return render(request, 'Order_Form.html', context)
