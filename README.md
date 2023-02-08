@@ -94,3 +94,5 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
     <li>User Orders product </li>
          Add variant image in order product list;
 </ol>
+
+## 32 Access to functions from templates Tags

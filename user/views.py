@@ -16,11 +16,12 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login')  # Check login
 def index(request):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     current_user = request.user  # Access User Session information
     profile = UserProfile.objects.get(user_id=current_user.id)
-    context = {'category': category,
-               'profile': profile}
+    context = {
+        # 'category': category,
+        'profile': profile}
     return render(request, 'user_profile.html', context)
 
 
@@ -30,7 +31,7 @@ def index(request):
 
 
 def login_form(request):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     if request.method == 'POST':  # check post
         username = request.POST['username']
         password = request.POST['password']
@@ -49,7 +50,7 @@ def login_form(request):
     # Return an 'invalid login' error message.
 
     context = {
-        'category': category,
+        # 'category': category,
     }
     return render(request, 'login.html', context)
 
@@ -90,9 +91,9 @@ def signup(request):
             return HttpResponseRedirect('/signup')
 
     form = SignUpForm()
-    category = Category.objects.all()
+    # category = Category.objects.all()
     context = {
-        'category': category,
+        # 'category': category,
         'form': form,
     }
     return render(request, 'signup.html', context)
@@ -115,12 +116,12 @@ def user_update(request):
             messages.success(request, 'Your account has been updated!')
             return HttpResponseRedirect('/user')
     else:
-        category = Category.objects.all()
+        # category = Category.objects.all()
         user_form = UserUpdateForm(instance=request.user)
         # "userprofile" model -> OneToOneField relatinon with user
         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
         context = {
-            'category': category,
+            # 'category': category,
             'user_form': user_form,
             'profile_form': profile_form
         }
@@ -146,11 +147,11 @@ def user_password(request):
                 request, 'Please correct the error below.<br>' + str(form.errors))
             return HttpResponseRedirect('/user/password')
     else:
-        category = Category.objects.all()
+        # category = Category.objects.all()
         form = PasswordChangeForm(request.user)
         context = {
             'form': form,
-            'category': category
+            # 'category': category
         }
         return render(request, 'user_password.html', context)
 
@@ -161,11 +162,11 @@ def user_password(request):
 
 @login_required(login_url='/login')  # Check login
 def user_orders(request):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     current_user = request.user
     orders = Order.objects.filter(user_id=current_user.id)
     context = {
-        'category': category,
+        # 'category': category,
         'orders': orders,
     }
     return render(request, 'user_orders.html', context)
@@ -178,12 +179,12 @@ def user_orders(request):
 
 @login_required(login_url='/login')  # Check login
 def user_orderdetail(request, id):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     current_user = request.user
     order = Order.objects.get(user_id=current_user.id, id=id)
     orderitems = OrderProduct.objects.filter(order_id=id)
     context = {
-        'category': category,
+        # 'category': category,
         'order': order,
         'orderitems': orderitems,
     }
@@ -196,13 +197,13 @@ def user_orderdetail(request, id):
 
 @login_required(login_url='/login')  # Check login
 def user_order_product(request):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     current_user = request.user
     order_product = OrderProduct.objects.filter(
         user_id=current_user.id).order_by('-id')
-    context = {'category': category,
-               'order_product': order_product,
-               }
+    context = {  # 'category': category,
+        'order_product': order_product,
+    }
     return render(request, 'user_order_products.html', context)
 
 # ============================================
@@ -212,12 +213,12 @@ def user_order_product(request):
 
 @login_required(login_url='/login')  # Check login
 def user_order_product_detail(request, id, oid):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     current_user = request.user
     order = Order.objects.get(user_id=current_user.id, id=oid)
     orderitems = OrderProduct.objects.filter(id=id, user_id=current_user.id)
     context = {
-        'category': category,
+        # 'category': category,
         'order': order,
         'orderitems': orderitems,
     }
@@ -229,11 +230,11 @@ def user_order_product_detail(request, id, oid):
 
 
 def user_comments(request):
-    category = Category.objects.all()
+    # category = Category.objects.all()
     current_user = request.user
     comments = Comment.objects.filter(user_id=current_user.id)
     context = {
-        'category': category,
+        # 'category': category,
         'comments': comments,
     }
     return render(request, 'user_comments.html', context)

@@ -16,7 +16,7 @@ from django.template.loader import render_to_string
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    # category = Category.objects.all()
     product_slider = Product.objects.all().order_by('-id')[:4]
     product_latest = Product.objects.all().order_by(
         '-id')[:4]  # last 4 products
@@ -35,7 +35,7 @@ def index(request):
     context = {
         'setting': setting,
         'page': page,
-        'category': category,
+        # 'category': category,
         'product_slider': product_slider,
         'product_latest': product_latest,
         'product_picked': product_picked,
