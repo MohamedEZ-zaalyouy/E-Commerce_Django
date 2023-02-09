@@ -1,6 +1,8 @@
 {% extends "homebase.html" %}
+<!--  -->
+{% load i18n %}
 <!--Start block title ================ -->
-{% block title %}User Login{% endblock title %}
+{% block title %}{% trans "User Login"}{% endblock title %}
 <!--Start block keywords ================ -->
 {% block keywords %} {{setting.keywords}} {% endblock keywords %}
 <!--Start block description ================ -->
@@ -18,8 +20,8 @@
 <div id="breadcrumb">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li class="active">login</li>
+      <li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+      <li class="active">{% trans "login" %}</li>
     </ul>
   </div>
 </div>
@@ -27,46 +29,54 @@
 <!-- section -->
 <!-- section -->
 <div class="section">
-	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row">
-            <div class="col-md-3"> </div>
-			<div class="col-md-6">
-				<div class="billing-details">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div class="billing-details">
+          <div class="section-title">
+            <h3 class="title">{% trans "Login Form" %}</h3>
+          </div>
 
-					<div class="section-title">
-						<h3 class="title">Login Form</h3>
-					</div>
+          {% if messages %} {% for message in messages %}
+          <div class="alert alert-{{message.tags}}" role="alert">
+            {{ message }}
+          </div>
+          {% endfor %} {% endif %}
 
-					{% if messages %}
-						{% for message in messages %}
-							<div class="alert alert-{{message.tags}}" role="alert">
-								{{ message }}
-							</div>
-						{% endfor %}
-					{% endif %}
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <input
+                class="input"
+                type="text"
+                name="username"
+                placeholder="Fuser Name"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                class="input"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+            <button type="submit" class="primary-btn">
+              {% trans "Login" %}
+            </button>
+            <!-- <input type="submit" value="Login"> -->
+          </form>
+        </div>
+      </div>
 
-					<form action="" method="post">
-						{% csrf_token %}
-					   <div class="form-group">
-							<input class="input" type="text" name="username" placeholder="Fuser Name">
-						</div>
-						<div class="form-group">
-							<input class="input" type="password" name="password" placeholder="Password">
-						</div>
-						<button type="submit"  class="primary-btn">Login</button>
-						<!-- <input type="submit" value="Login"> -->
-					</form>
-
-				</div>
-			</div>
-
-			<div class="col-md-3"> </div>
-		</div>
-		<!-- /row -->
-	</div>
-	<!-- /container -->
+      <div class="col-md-3"></div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
 </div>
 <!-- /section -->
 <!-- /section -->

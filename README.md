@@ -96,3 +96,5 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
 </ol>
 
 ## 32 Access to functions from templates Tags
+
+## 33 Multi Language on static html files and Urls

@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 15:47+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\home\templates\header.html:9
+msgid "Welcome to E-shop!"
+msgstr "Alışverişe Hoş Geldiniz"
+
+#: .\home\templates\header.html:21
+msgid "Store"
+msgstr "Mağaza"
+
+#: .\home\templates\header.html:22
+msgid "Newsletter"
+msgstr "Haberler"
+
+#: .\home\templates\header.html:23
+msgid "FAQ"
+msgstr "SSS"
+
+#: .\home\templates\header.html:96
+msgid "All Categories"
+msgstr "Tüm Kategoriler"
+
+#: .\home\templates\header.html:121
+msgid "My Account"
+msgstr "Hesabım"
+
+#: .\home\templates\header.html:122
+msgid "My Favorits"
+msgstr "Favaorilerim"
+
+#: .\home\templates\header.html:123
+msgid "My Orders "
+msgstr "Satın Aldıklarım"
+
+#: .\home\templates\header.html:124
+msgid "My Comments"
+msgstr "Yorumlarım"
+
+#: .\home\templates\header.html:125
+msgid "Logout"
+msgstr "Çıkış"
+
+#: .\home\templates\header2.html:10
+#, fuzzy
+#| msgid "Welcome to E-shop!"
+msgid "Welcome to Med-shop!"
+msgstr "Alışverişe Hoş Geldiniz"
+
+#~ msgid "Home"
+#~ msgstr "Anasayfa"
+
+#~ msgid "About Us"
+#~ msgstr "Hakkımızda"
+
+#, fuzzy
+#~| msgid "Contact Us"
+#~ msgid "Contact Page"
+#~ msgstr "İletişim"
+
+#~ msgid "Contact Form"
+#~ msgstr "İletişim Formu"
+
+#~ msgid "SEND FORM"
+#~ msgstr "Formu Gönder"
+
+#~ msgid "Contact Information"
+#~ msgstr "İletişim Bilgileri"
+
+#~ msgid "My Cart:"
+#~ msgstr "Sepetim"
+
+#, fuzzy
+#~| msgid "All Categories"
+#~ msgid "Categories"
+#~ msgstr "Tüm Kategoriler"
+
+#~ msgid "Contact Us"
+#~ msgstr "İletişim"
+
+#, fuzzy
+#~| msgid "Contact Us"
+#~ msgid "Contact"
+#~ msgstr "İletişim"
+
+#, fuzzy
+#~| msgid "About Us"
+#~ msgid "Aabout Us"
+#~ msgstr "Hakkımızda"
+
+#~ msgid "English (ENG)"
+#~ msgstr "İngilizce (ENG)"
+
+#~ msgid "Spanish (Es)"
+#~ msgstr "Ispanyolca (Es)"
+
+#~ msgid "French (FR)"
+#~ msgstr "Fransızca (FR)"
+
+#~ msgid "Russian (Ru)"
+#~ msgstr "Rusça (Ru)"
