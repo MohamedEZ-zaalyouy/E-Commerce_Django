@@ -2,7 +2,7 @@
 <!--  -->
 {% load i18n %}
 <!--Start block title ================ -->
-{% block title %}{% trans "User Login"}{% endblock title %}
+{% block title %}{% trans "User Login" %}{% endblock title %}
 <!--Start block keywords ================ -->
 {% block keywords %} {{setting.keywords}} {% endblock keywords %}
 <!--Start block description ================ -->
@@ -20,7 +20,7 @@
 <div id="breadcrumb">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+      <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
       <li class="active">{% trans "login" %}</li>
     </ul>
   </div>

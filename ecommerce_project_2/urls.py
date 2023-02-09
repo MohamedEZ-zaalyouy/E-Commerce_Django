@@ -20,30 +20,44 @@ from django.urls import path, include
 from home import views
 from order import views as OrderViews
 from user import views as UserViews
-
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
 urlpatterns = [
+    path('selectlanguage', views.selectlanguage, name='selectlanguage'),
+    path('selectcurrency', views.selectcurrency, name='selectcurrency'),
+    path('savelangcur', views.savelangcur, name='savelangcur'),
+    path('i18n/', include('django.conf.urls.i18n')),
+]
+
+urlpatterns += i18n_patterns(
+    path(_('admin/'), admin.site.urls),
     path('', include("home.urls")),
-    path('admin/', admin.site.urls),
+    path('', views.index, name='home'),
     path('home/', include("home.urls")),
     path('product/', include("product.urls")),
     path('order/', include("order.urls")),
-    path('user/', include("user.urls")),
+    path('user/', include("user.urls"), name="user"),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
+
+    path(_('about/'), views.aboutus, name='aboutus'),
+    path(_('contact/'), views.contact, name='contactus'),
 
     path('category/<int:id>/<slug:slug>',
          views.category_products, name='category_products'),
     path('search/', views.search, name='search'),
     path('shopcart/', OrderViews.shopcart, name='shopcart'),
-    path('login/', UserViews.login_form, name='login_form'),
-    path('logout/', UserViews.logout_func, name='logout_func'),
+    path('login/', UserViews.login_form, name='login'),
+    path('logout/', UserViews.logout_func, name='logout'),
     path('signup/', UserViews.signup, name='signup'),
     path('search_auto/', views.search_auto, name='search_auto'),
     path('product/<int:id>/<slug:slug>',
          views.product_detail, name='product_detail'),
     path('faq/', views.faq, name='faq'),
     path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
-]
+    prefix_default_language=False,
+)
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

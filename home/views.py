@@ -2,11 +2,14 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
 from home.models import Setting, ContactForm, ContactMessage, FAQ
+from user.models import UserProfile
 from product.models import Category, Product, Images, Comment, Variants
 from order.models import ShopCart
 from home.forms import SearchForm
 import json
 from django.template.loader import render_to_string
+from django.utils import translation
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # ========================================================
@@ -218,3 +221,35 @@ def faq(request):
         'faq': faq,
     }
     return render(request, 'faq.html', context)
+
+
+# ========================================================
+# Create selectlanguage Views
+# ========================================================
+
+
+def selectlanguage(request):
+    if request.method == 'POST':  # check post
+        cur_language = translation.get_language()
+        lasturl = request.META.get('HTTP_REFERER')
+        lang = request.POST['language']
+        translation.activate(lang)
+        request.session[translation.LANGUAGE_SESSION_KEY] = lang
+        return HttpResponseRedirect("/"+lang)
+
+# ========================================================
+# Create savelangcur Views
+# ========================================================
+
+
+@login_required(login_url='/login')  # Check login
+def savelangcur(request):
+    pass
+
+# ========================================================
+# Create selectcurrency Views
+# ========================================================
+
+
+def selectcurrency(request):
+    pass

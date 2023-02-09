@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 15:57+0100\n"
+"POT-Creation-Date: 2023-02-09 23:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,14 @@ msgstr "İngilizce"
 msgid "Turkish"
 msgstr "Türkçe"
 
-#~ msgid "admin/"
-#~ msgstr "yonetim/"
+#: .\ecommerce_project_2\urls.py:33
+msgid "admin/"
+msgstr "yonetim/"
 
-#~ msgid "about/"
-#~ msgstr "hakkimizda/"
+#: .\ecommerce_project_2\urls.py:43
+msgid "about/"
+msgstr "hakkimizda/"
 
-#~ msgid "contact/"
-#~ msgstr "iletisim/"
+#: .\ecommerce_project_2\urls.py:44
+msgid "contact/"
+msgstr "iletisim/"

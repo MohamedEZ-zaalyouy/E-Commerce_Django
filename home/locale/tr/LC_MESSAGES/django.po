@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 15:47+0100\n"
+"POT-Creation-Date: 2023-02-09 23:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\home\templates\contact.html:28
+msgid "Home"
+msgstr "Anasayfa"
+
+#: .\home\templates\contact.html:29
+#, fuzzy
+#| msgid "Contact Us"
+msgid "Contact Page"
+msgstr "İletişim"
+
+#: .\home\templates\contact.html:43
+msgid "Contact Form"
+msgstr "İletişim Formu"
+
+#: .\home\templates\contact.html:65
+msgid "Contact Information"
+msgstr "İletişim Bilgileri"
 
 #: .\home\templates\header.html:9
 msgid "Welcome to E-shop!"
@@ -38,23 +56,23 @@ msgstr "SSS"
 msgid "All Categories"
 msgstr "Tüm Kategoriler"
 
-#: .\home\templates\header.html:121
+#: .\home\templates\header.html:123
 msgid "My Account"
 msgstr "Hesabım"
 
-#: .\home\templates\header.html:122
+#: .\home\templates\header.html:124
 msgid "My Favorits"
 msgstr "Favaorilerim"
 
-#: .\home\templates\header.html:123
+#: .\home\templates\header.html:125
 msgid "My Orders "
 msgstr "Satın Aldıklarım"
 
-#: .\home\templates\header.html:124
+#: .\home\templates\header.html:126
 msgid "My Comments"
 msgstr "Yorumlarım"
 
-#: .\home\templates\header.html:125
+#: .\home\templates\header.html:127
 msgid "Logout"
 msgstr "Çıkış"
 
@@ -64,25 +82,11 @@ msgstr "Çıkış"
 msgid "Welcome to Med-shop!"
 msgstr "Alışverişe Hoş Geldiniz"
 
-#~ msgid "Home"
-#~ msgstr "Anasayfa"
-
 #~ msgid "About Us"
 #~ msgstr "Hakkımızda"
 
-#, fuzzy
-#~| msgid "Contact Us"
-#~ msgid "Contact Page"
-#~ msgstr "İletişim"
-
-#~ msgid "Contact Form"
-#~ msgstr "İletişim Formu"
-
 #~ msgid "SEND FORM"
 #~ msgstr "Formu Gönder"
-
-#~ msgid "Contact Information"
-#~ msgstr "İletişim Bilgileri"
 
 #~ msgid "My Cart:"
 #~ msgstr "Sepetim"
