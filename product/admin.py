@@ -1,7 +1,7 @@
 import admin_thumbnails
 from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin
-from .models import Category, Product, Images, Comment, Color, Size, Variants
+from .models import Category, Product, Images, Comment, Color, Size, Variants, ProductLang, CategoryLang
 
 
 # ===========================
@@ -12,13 +12,20 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['title', 'status']
 
 
+class CategoryLangInline(admin.TabularInline):
+    model = CategoryLang
+    extra = 1
+    show_change_link = True
+    prepopulated_fields = {'slug': ('title',)}
+
+
 class CategoryAdmin2(DraggableMPTTAdmin):
     mptt_indent_field = "title"
     list_display = ('tree_actions', 'indented_title',
                     'related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
     prepopulated_fields = {'slug': ('title',)}  # auto slug
-   # inlines = [CategoryLangInline]
+    inlines = [CategoryLangInline]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -65,7 +72,7 @@ class ProductVariantsInline(admin.TabularInline):
 
 
 class ProductLangInline(admin.TabularInline):
-    # model = ProductLang
+    model = ProductLang
     extra = 1
     show_change_link = True
     prepopulated_fields = {'slug': ('title',)}
@@ -80,7 +87,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'status', 'image_tag']
     list_filter = ['category']
     readonly_fields = ('image_tag',)
-    inlines = [ProductImageInline, ProductVariantsInline]
+    inlines = [ProductImageInline, ProductVariantsInline, ProductLangInline]
     prepopulated_fields = {'slug': ('title',)}
 
 
@@ -108,6 +115,18 @@ class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title', 'id']
 
 
+class ProductLangugaeAdmin(admin.ModelAdmin):
+    list_display = ['title', 'lang', 'slug']
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ['lang']
+
+
+class CategoryLangugaeAdmin(admin.ModelAdmin):
+    list_display = ['title', 'lang', 'slug']
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ['lang']
+
+
 # ===========================
 # Register your models here.
 # ===========================
@@ -118,3 +137,5 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(Color, ColorAdmin)
 admin.site.register(Size, SizeAdmin)
 admin.site.register(Variants, VariantsAdmin)
+admin.site.register(ProductLang, ProductLangugaeAdmin)
+admin.site.register(CategoryLang, CategoryLangugaeAdmin)

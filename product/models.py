@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.db.models import Avg, Count
+from home.models import Language
 # Create your models here.
 
 # ====================================================================
@@ -221,3 +222,41 @@ class Variants(models.Model):
             return mark_safe('<img src="{}" height="50"/>'.format(img.image.url))
         else:
             return ""
+
+
+# ====================================================================
+#  Start models Language
+# ====================================================================
+llist = Language.objects.all()
+list1 = []
+for rs in llist:
+    list1.append((rs.code, rs.name))
+langlist = (list1)
+
+
+class ProductLang(models.Model):
+    # many to one relation with Category
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    lang = models.CharField(max_length=6, choices=langlist)
+    title = models.CharField(max_length=150)
+    keywords = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    slug = models.SlugField(null=False, unique=True)
+    detail = RichTextUploadingField()
+
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'slug': self.slug})
+
+
+class CategoryLang(models.Model):
+    # many to one relation with Category
+    category = models.ForeignKey(
+        Category, related_name='categorylangs', on_delete=models.CASCADE)
+    lang = models.CharField(max_length=6, choices=langlist)
+    title = models.CharField(max_length=150)
+    keywords = models.CharField(max_length=255)
+    slug = models.SlugField(null=False, unique=True)
+    description = models.CharField(max_length=255)
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})

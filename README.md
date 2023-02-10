@@ -98,3 +98,7 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
 ## 32 Access to functions from templates Tags
 
 ## 33 Multi Language on static html files and Urls
+
+## 34 Django E Commerce Multi Language on Database Models
+
+This part Include Setting, Category, Product, FAQ, Userprofile Model and Admin, At the frontpages Product Detail, FAQ, Userprofile
