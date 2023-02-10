@@ -10,6 +10,7 @@ import json
 from django.template.loader import render_to_string
 from django.utils import translation
 from django.contrib.auth.decorators import login_required
+from ecommerce_project_2 import settings
 # Create your views here.
 
 # ========================================================
@@ -150,6 +151,26 @@ def search_auto(request):
 
 
 def product_detail(request, id, slug):
+    query = request.GET.get('q')
+    # >>>>>>>>>>>>>>>> M U L T I   L A N G U G A E >>>>>> START
+    defaultlang = settings.LANGUAGE_CODE[0:2]  # en-EN
+    currentlang = request.LANGUAGE_CODE[0:2]
+    # category = categoryTree(0, '', currentlang)
+    category = Category.objects.all()
+
+    product = Product.objects.get(pk=id)
+
+    if defaultlang != currentlang:
+        try:
+            prolang = Product.objects.raw('SELECT p.id,p.price,p.amount,p.image,p.variant,l.title, l.keywords, l.description,l.slug,l.detail '
+                                          'FROM product_product as p '
+                                          'INNER JOIN product_productlang as l '
+                                          'ON p.id = l.product_id '
+                                          'WHERE p.id=%s and l.lang=%s', [id, currentlang])
+            product = prolang[0]
+        except:
+            pass
+    # <<<<<<<<<< M U L T I   L A N G U G A E <<<<<<<<<<<<<<< end
     category = Category.objects.all()
     product = Product.objects.get(pk=id)
     images = Images.objects.filter(product_id=id)
@@ -214,10 +235,17 @@ def ajaxcolor(request):
 
 
 def faq(request):
-    faq = FAQ.objects.filter(status="True").order_by("ordernumber")
-    category = Category.objects.all()
+    defaultlang = settings.LANGUAGE_CODE[0:2]
+    currentlang = request.LANGUAGE_CODE[0:2]
+
+    if defaultlang == currentlang:
+        faq = FAQ.objects.filter(
+            status="True", lang=defaultlang).order_by("ordernumber")
+    else:
+        faq = FAQ.objects.filter(
+            status="True", lang=currentlang).order_by("ordernumber")
+
     context = {
-        'category': category,
         'faq': faq,
     }
     return render(request, 'faq.html', context)

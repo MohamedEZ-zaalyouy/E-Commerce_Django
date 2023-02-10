@@ -13,8 +13,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
 
 
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ['question', 'answer', 'ordernumber', 'status']
-    list_filter = ['status']
+    list_display = ['question', 'answer', 'ordernumber', 'lang', 'status']
+    list_filter = ['status', 'lang']
 
 
 class LanguagesAdmin(admin.ModelAdmin):
