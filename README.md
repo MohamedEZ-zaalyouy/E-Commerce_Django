@@ -1,60 +1,50 @@
 # E-Commerce_Django
 
-## 1 -Django Installation Structure Introduction
+## 1 Django Installation Structure Introduction
 
-## 2 -Django E-Commerce: css web template implementation
+### database UML
 
-## 3 -Django E-Commerce: database model admin relation category and product image upload
+### Template implementation
 
-## 5 -Django E-Commerce: Product Image gallery
+### database model admin relation category and product image upload
 
-## 6 -Django E-Commerce: Implemet Richtext Editor Ckeditor
+## 2 Product Image gallery
 
-## 7 -Django E-Commerce: Pages de contact
+## 3 Implemet Richtext Editor Ckeditor
 
-## 8 -Django E-Commerce: Category Tree Subcategory menu('mptt')
+## 4 Pages de contact
 
-## 10 -Django E Commerce Automatically Creating Slug for Category and Product
+## 5 Pages Search Products
 
-## 11 -Django E Commerce Dynamic Slider in homepage
+### Search Auto Products
 
-## 12 -Django E Commerce products with images on homepage
+## 6 Pages login
 
-## 13 -Django E Commerce Listing Category products
+## 7 Pages sign Up
 
-## 14 -Django E Commerce Search Products
+## 8 Pages FAQ
 
-## 15 -Django E Commerce Search Auto Products
+## 9 Page Product detail with image gallery
 
-## 16 -Django E Commerce Product detail page with image gallery
+## 10 Product Review Comment Rating
 
-## 17 -Django E Commerce Product Review Comment Rating
+## 11 Category Tree Subcategory menu('mptt')
 
-## 18 -Django E Commerce Shop cart Add list delete items
+## 12 Shop cart Add list delete items
 
-## 19 -Django E Commerce user profile information
+## 13 user profile information
 
-## 20 -Django E Commerce user custom login logout user image
+### Update Change User & Profile Information
 
-## 21 -Django E Commerce user custom sign Up user
+### Change User Password
 
-## 22 -Django E Commerce Order Prudacts
+## 14 Order Prudacts and Detail
 
-## 23 -Django E Commerce User Menu & Panel Profile Page
+## 15 User Comments List and Delete
 
-## 24 -Django E Commerce Update Change User & Profile Information
+## 16 Count and Average of Products Reviews
 
-## 25 -Django E Commerce Change User Password
-
-## 26 -Django E Commerce User Order Product List and Detail
-
-## 27 -Django E Commerce User Comments List and Delete
-
-## 28 -Django E Commerce Count and Average of Products Reviews
-
-## 29 -Django E Commerce Frequently Asked Questions FAQ with Jquery ui Accordion
-
-## 30 -Django E Commerce Product Attributes Variants Amazon style Size Color
+## 17 Product Attributes Variants Amazon style Size Color
 
 ![](imgscrin/varaint.png)
 
@@ -95,14 +85,12 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
          Add variant image in order product list;
 </ol>
 
-## 32 Access to functions from templates Tags
+## 18 Multi Language on static html files and Urls
 
-## 33 Multi Language on static html files and Urls
-
-## 34 Multi Language on Database Models
+## 19 Multi Language on Database Models
 
 This part Include Setting, Category, Product, FAQ, Userprofile Model and Admin, At the frontpages Product Detail, FAQ, Userprofile
 
 ![](imgscrin/Multi%20Language%20on%20Database.png)
 
-## Multi Currency
+## 20 Multi Currency
