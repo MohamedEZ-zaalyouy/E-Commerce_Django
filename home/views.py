@@ -151,12 +151,9 @@ def search(request):
                     title__icontains=query, category_id=catid)
 
             category = Category.objects.all()
-            context = {
-                'products': products,
-                'query': query,
-                'category': category}
-
-        return render(request, 'search_products.html', context)
+            context = {'products': products, 'query': query,
+                       'category': category}
+            return render(request, 'search_products.html', context)
 
     return HttpResponseRedirect('/')
 
@@ -168,11 +165,12 @@ def search(request):
 def search_auto(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        product = Product.objects.filter(title__icontains=q)
+        products = Product.objects.filter(title__icontains=q)
+
         results = []
-        for rs in product:
+        for rs in products:
             product_json = {}
-            product_json = rs.title
+            product_json = rs.title + " > " + rs.category.title
             results.append(product_json)
         data = json.dumps(results)
     else:

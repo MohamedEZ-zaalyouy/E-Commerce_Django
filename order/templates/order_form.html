@@ -1,155 +1,84 @@
 {% extends 'homebase.html' %}
-<!--Start block title ================ -->
+{% load currency %}
 {% block title %} Order Page {% endblock %}
-<!--Start block description ================ -->
 {% block description %} {{ setting.description }} {% endblock %}
-<!--Start block keywords ================ -->
 {% block keywords %} {{ setting.keywords }} {% endblock %}
-<!--Start block sidebar ================ -->
+
 {% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
-<!--Start block body ================ -->
+
 {% block body %}
 
-<!-- BREADCRUMB -->
-<div id="breadcrumb">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li class="active">Order Page</li>
-    </ul>
-  </div>
-</div>
-<!-- /BREADCRUMB -->
-<!-- section -->
-<div class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <form action="" method="post">
-        {% csrf_token %}
-        <div class="col-md-6">
-          <div class="billing-details">
-            <div class="section-title">
-              <h4 class="title">Shipping Details</h4>
-            </div>
-            <p>
-              <label for="id_first_name">First name:</label>
-              <input
-                type="text"
-                name="first_name"
-                value="{{ user.first_name }}"
-                class="input"
-                maxlength="10"
-                required
-                id="id_first_name"
-              />
-            </p>
-            <p>
-              <label for="id_last_name">Last name:</label>
-              <input
-                type="text"
-                name="last_name"
-                value="{{ user.last_name }}"
-                class="input"
-                maxlength="10"
-                required
-                id="id_last_name"
-              />
-            </p>
-            <p>
-              <label for="id_address">Address:</label>
-              <input
-                type="text"
-                name="address"
-                value="{{ profile.address }}"
-                class="input"
-                maxlength="150"
-                id="id_address"
-              />
-            </p>
-            <p>
-              <label for="id_phone">Phone:</label>
-              <input
-                type="text"
-                name="phone"
-                value="{{ profile.phone }}"
-                class="input"
-                maxlength="20"
-                id="id_phone"
-              />
-            </p>
-            <p>
-              <label for="id_city">City:</label>
-              <select name="city" class="input" id="id_city">
-                <option value="{{ profile.city }}" selected>
-                  {{ profile.city }}
-                </option>
-                <option value="Rabat">Rabat</option>
-                <option value="Casa">Casa</option>
-                <option value="Zagora">Zagora</option>
-                <option value="Tanger">Tanger</option>
-              </select>
-            </p>
-            <p>
-              <label for="id_first_name">Country :</label>
-              <input
-                type="text"
-                name="country"
-                class="input"
-                id="id_country"
-                value="{{ profile.country }}"
-              />
-            </p>
-            <div class="pull-right">
-              <button type="submit" class="primary-btn">Complete Order</button>
-            </div>
-          </div>
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Order Page</li>
+            </ul>
         </div>
-        <!-- =================== -->
-        <!-- Payment Information -->
-        <!-- =================== -->
-        <div class="col-md-6">
-          <div class="shiping-methods">
-            <div class="section-title">
-              <h4 class="title">Payment Information</h4>
-            </div>
-            <p>
-              <label for="id_first_name">Total: {{ total }} USD </label>
-              <input
-                type="text"
-                name="total"
-                class="input"
-                readonly
-                {% comment %} value="${{ total  }}" {% endcomment %}
-              />
-            </p>
-            <p>
-              <label for="id_first_name">Credit Card Holder</label>
-              <input type="text" name="holder" class="input" value="" />
-            </p>
-            <p>
-              <label for="id_first_name">Credit Card Number</label>
-              <input type="text" name="number" class="input" value="" />
-            </p>
-            <p>
-              <label for="id_first_name">Credit Exp Date/Year</label>
-              <input
-                type="text"
-                name="ecpdate"
-                class="input"
-                placeholder="mm/yy"
-              />
-            </p>
-            <p>
-              <label for="id_first_name">Security Number</label>
-              <input type="text" name="secnumber" class="input" value="" />
-            </p>
-          </div>
-        </div>
-      </form>
+    </div>
+    <!-- /BREADCRUMB -->
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div  class="row">
+                <Form action="" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <div class="billing-details">
 
-      <div class="col-md-12">
+                            <div class="section-title">
+                                <h4 class="title">Shipping Details</h4>
+                            </div>
+                            <p><label for="id_first_name">First name:</label>
+                                <input type="text" name="first_name"  value="{{ user.first_name }}" class="input" maxlength="10" required id="id_first_name"></p>
+                            <p><label for="id_last_name">Last name:</label>
+                                <input type="text" name="last_name"  value="{{ user.last_name }}" class="input" maxlength="10" required id="id_last_name"></p>
+                            <p><label for="id_address">Address:</label>
+                                <input type="text" name="address" value="{{ profile.address }}" class="input" maxlength="150" id="id_address"></p>
+                            <p><label for="id_phone">Phone:</label>
+                                <input type="text" name="phone"  value="{{ profile.phone }}"  class="input" maxlength="20" id="id_phone"></p>
+                            <p><label for="id_city">City:</label>
+                                <select name="city" class="input" id="id_city">
+                                    <option value="{{ profile.city }}" selected>{{ profile.city }}</option>
+                                    <option value="İstanbul">Istanbul</option>
+                                    <option value="Ankara">Ankara</option>
+                                    <option value="İzmir">Izmir</option>
+                                    <option value="Bursa">Bursa</option>
+                                    <option value="Konya">Konya</option>
+                                    <option value="Yozgat">Yozgat</option>
+                                </select></p>
+                            <p><label for="id_first_name">Country :</label>
+                                <input type="text" name="country" class="input" id="id_country" value="{{ profile.country }}"></p>
+                            <div class="pull-right">
+                                <button  type="submit" class="primary-btn">Complete Order</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="shiping-methods">
+                            <div class="section-title">
+                                <h4 class="title">Payment Information</h4>
+                            </div>
+                            <p><label for="id_first_name">Total: {{ total }} USD </label>
+                                <input type="text" name="total" class="input" readonly value="${{ total|currency:request.session.currency }} {{ request.session.currency }}"></p>
+                            <p><label for="id_first_name">Credit Card Holder</label>
+                                <input type="text" name="holder" class="input"  value=""></p>
+                            <p><label for="id_first_name">Credit Card Number</label>
+                                <input type="text" name="number" class="input"  value=""></p>
+                            <p><label for="id_first_name">Credit Exp Date/Year</label>
+                                <input type="text" name="ecpdate" class="input"  placeholder="mm/yy"></p>
+                            <p><label for="id_first_name">Security Number</label>
+                                <input type="text" name="secnumber" class="input"  value=""></p>
+                        </div>
+                    </div>
+
+                </Form>
+
+                <div class="col-md-12">
                     <div class="order-summary clearfix">
                         <div class="section-title">
                             <h3 class="title">Shopcart Product List</h3>
@@ -181,17 +110,17 @@
                                         <a href="/product/{{ rs.product.id }}/{{ rs.product.slug }}">{{rs.product}} {{ rs.variant.size }} {{ rs.variant.color }}</a>  </td>
                                     <td class="price text-center"><strong>
                                         {% if rs.product.variant == 'None' %}
-                                            {{ rs.product.price  }}
+                                            {{ rs.product.price|currency:request.session.currency }} {{ request.session.currency }}
                                         {% else %}
-                                            {{ rs.variant.price  }}
+                                            {{ rs.variant.price|currency:request.session.currency }} {{ request.session.currency }}
                                         {% endif %}
                                     </strong></td>
                                     <td class="qty text-center"><strong>{{rs.quantity}}</strong></td>
                                     <td class="total text-center"><strong class="primary-color">$
                                         {% if rs.product.variant == 'None' %}
-                                            {{ rs.amount}}
+                                            {{ rs.amount|currency:request.session.currency }} {{ request.session.currency }}
                                         {% else %}
-                                            {{ rs.varamount}}
+                                            {{ rs.varamount|currency:request.session.currency }} {{ request.session.currency }}
                                         {% endif %}
                                     </strong></td>
                                     <td class="text-right"><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
@@ -204,7 +133,7 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>SUBTOTAL</th>
-                                <th colspan="2" class="sub-total">{{ total}}</th>
+                                <th colspan="2" class="sub-total">{{ total|currency:request.session.currency }} {{ request.session.currency }}</th>
                             </tr>
                             <tr>
                                 <th class="empty" colspan="3"></th>
@@ -214,7 +143,7 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>TOTAL</th>
-                                <th colspan="2" class="total">{{ total}}</th>
+                                <th colspan="2" class="total">{{ total|currency:request.session.currency }} {{ request.session.currency }}</th>
                             </tr>
                             </tfoot>
                         </table>
