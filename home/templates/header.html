@@ -1,6 +1,6 @@
 {% load static %}
-<!--  -->
 {% load i18n %}
+{% load currency %}
 <header>
     <!-- top Header -->
     <div id="top-header">
@@ -15,7 +15,10 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            
+
+
+
+
             <div class="pull-right">
                 <ul class="header-top-links">
                     <li><a href="#">{% trans "Store" %}</a></li>
@@ -44,7 +47,26 @@
 
                     <li class="dropdown default-dropdown">
 
-                    <!-- add form -->
+
+                        <form id="currency_switcher" method="POST" action="{% url 'selectcurrency' %}">
+                            {% csrf_token %}
+                            <select name="currency" onchange="submit()" >
+                                {% for curr in CURRENCIES %}
+                                    <option value="{{ curr.code }}"
+                                    {% if curr.code == request.session.currency %} 
+                                      selected="selected"
+                                    {% endif %}
+                                            >
+                                        {{ curr.symbol }} {{ curr.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <noscript>
+                                <input type="submit" value="Set" />
+                            </noscript>
+
+                        </form>
                     </li>
 
                     <li class="dropdown default-dropdown">
@@ -86,7 +108,7 @@
                         var selectedObj = ui.item;
                     }
                 </script>
-                {% load myapptags %} {% categorylist as category %}
+
                 <!-- Search -->
                 <div class="header-search">
                     <form action="/search/" method="post">
@@ -94,9 +116,7 @@
                         <input id="query" name="query" class="input search-input" type="text" placeholder="Enter your keyword">
                         <select name="catid"  class="input search-categories">
                             <option value="0">{% trans "All Categories" %}</option>
-                            {% for rs in category %}
-                            <option value="{{rs.id}}">{{rs.title}}</option>
-                            {% endfor %}
+
                         </select>
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
@@ -129,86 +149,35 @@
                         </ul>
                     </li>
                     <!-- /Account -->
-          {% if user.id is not None %}
-          <!-- Cart -->
-          {% load myapptags %} {% shopcartcount user.id as context %}
-          <li class="header-cart dropdown default-dropdown">
-            <a
-              class="dropdown-toggle"
-              data-toggle="dropdown"
-              aria-expanded="true"
-            >
-              <div class="header-btns-icon">
-                <i class="fa fa-shopping-cart"></i>
-                <span class="qty">{{context.count}}</span>
-              </div>
-              <strong class="text-uppercase">My Cart:</strong>
-              <br />
-              <span>{{context.total}}$</span>
-            </a>
-            <div class="custom-menu">
-              <div id="shopping-cart">
-                <div class="shopping-cart-list">
-                  {% for rs in context.shopcart %}
-                  <div class="product product-widget">
-                    <div class="product-thumb">
-                      {% if rs.variant.image_id > 0 %}
-                      <img src="{{rs.variant.image }}" alt="" />
-                      {% else %}
-                      <img src="{{rs.product.image.url}}" alt="" />
-                      {% endif %}
-                    </div>
-                    <div class="product-body">
-                      <h3 class="product-price">
-                        $ {% if rs.product.variant == 'None' %} 
-                        {{rs.product.price}} 
-                        {% else %}
-                        {{ rs.variant.price }}
-                        {% endif %}
-                        <span class="qty">x{{rs.quantity}}</span>
-                      </h3>
-                      <h2 class="product-name">
-                        <a href="/product/{{rs.product.id}}/{{rs.product.slug}}"
-                          >{{rs.product.title|slice:'1:20'|add:'...'}}</a
-                        >
-                      </h2>
-                    </div>
-                    <button class="cancel-btn">
-                      <a
-                        href="/order/deletefromcart/{{rs.id}}"
-                        class="main-btn icon-btn"
-                        onclick="return confirm('Delete! Are you sure?')"
-                        ><i class="fa fa-trash"></i
-                      ></a>
-                    </button>
-                  </div>
-                  {% endfor %}
-                </div>
-                <div class="shopping-cart-btns">
-                  <button class="main-btn">View Cart</button>
-                  <button class="primary-btn">
-                    <a href="/shopcart/"
-                      >Checkout <i class="fa fa-arrow-circle-right"></i
-                    ></a>
-                  </button>
-                </div>
-              </div>
+
+                    <!-- Cart -->
+                    <li class="header-cart dropdown default-dropdown">
+                        <a href="{% url 'shopcart'%}" >
+                            <div class="header-btns-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                                {% load myapptags %}
+                                {% shopcartcount user.id as count %}
+
+                                <span class="qty">{{ count }}</span>
+                            </div>
+                            <strong class="text-uppercase">{% trans "My Cart:" %}</strong>
+                            <br>
+
+                        </a>
+
+                    </li>
+                    <!-- /Cart -->
+
+                    <!-- Mobile nav toggle-->
+                    <li class="nav-toggle">
+                        <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                    </li>
+                    <!-- / Mobile nav toggle -->
+                </ul>
             </div>
-          </li>
-          <!-- /Cart -->
-          {% endif %}
-          <!-- Mobile nav toggle-->
-          <li class="nav-toggle">
-            <button class="nav-toggle-btn main-btn icon-btn">
-              <i class="fa fa-bars"></i>
-            </button>
-          </li>
-          <!-- / Mobile nav toggle -->
-        </ul>
-      </div>
+        </div>
+        <!-- header -->
     </div>
-    <!-- header -->
-  </div>
-  <!-- container -->
+    <!-- container -->
 </header>
 <!-- /HEADER -->

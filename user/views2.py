@@ -1,18 +1,17 @@
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-
-# Create your views here.
-from django.utils import translation
-
-from home.models import FAQ
-from order.models import Order, OrderProduct
 from product.models import Category, Comment
-from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
+from order.models import Order, OrderProduct
+from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
+
+# ============================================
+#     Create index views here.
+# ============================================
 
 
 @login_required(login_url='/login')  # Check login
@@ -20,13 +19,20 @@ def index(request):
     # category = Category.objects.all()
     current_user = request.user  # Access User Session information
     profile = UserProfile.objects.get(user_id=current_user.id)
-    context = {  # 'category': category,
+    context = {
+        # 'category': category,
         'profile': profile}
     return render(request, 'user_profile.html', context)
 
 
+# ============================================
+#     Create login views here.
+# ============================================
+
+
 def login_form(request):
-    if request.method == 'POST':
+    # category = Category.objects.all()
+    if request.method == 'POST':  # check post
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -35,31 +41,32 @@ def login_form(request):
             current_user = request.user
             userprofile = UserProfile.objects.get(user_id=current_user.id)
             request.session['userimage'] = userprofile.image.url
-            # *** Multi Langugae
-            request.session[translation.LANGUAGE_SESSION_KEY] = userprofile.language.code
-            request.session['currency'] = userprofile.currency.code
-            translation.activate(userprofile.language.code)
-
             # Redirect to a success page.
-            return HttpResponseRedirect('/'+userprofile.language.code)
+            return HttpResponseRedirect('/')
         else:
             messages.warning(
                 request, "Login Error !! Username or Password is incorrect")
             return HttpResponseRedirect('/login')
     # Return an 'invalid login' error message.
 
-    # category = Category.objects.all()
-    context = {  # 'category': category
+    context = {
+        # 'category': category,
     }
     return render(request, 'login.html', context)
+
+# ============================================
+#     Create logout_func  here.
+# ============================================
 
 
 def logout_func(request):
     logout(request)
-    if translation.LANGUAGE_SESSION_KEY in request.session:
-        del request.session[translation.LANGUAGE_SESSION_KEY]
-        del request.session['currency']
     return HttpResponseRedirect('/')
+
+
+# ============================================
+#     Create signup views here.
+# ============================================
 
 
 def signup(request):
@@ -85,10 +92,15 @@ def signup(request):
 
     form = SignUpForm()
     # category = Category.objects.all()
-    context = {  # 'category': category,
+    context = {
+        # 'category': category,
         'form': form,
     }
-    return render(request, 'signup_form.html', context)
+    return render(request, 'signup.html', context)
+
+# ============================================
+#     Create user_update views here.
+# ============================================
 
 
 @login_required(login_url='/login')  # Check login
@@ -104,17 +116,21 @@ def user_update(request):
             messages.success(request, 'Your account has been updated!')
             return HttpResponseRedirect('/user')
     else:
-        category = Category.objects.all()
+        # category = Category.objects.all()
         user_form = UserUpdateForm(instance=request.user)
         # "userprofile" model -> OneToOneField relatinon with user
         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
         context = {
-            'category': category,
+            # 'category': category,
             'user_form': user_form,
             'profile_form': profile_form
         }
         return render(request, 'user_update.html', context)
 
+
+# ============================================
+#     Create user_password views here.
+# ============================================
 
 @login_required(login_url='/login')  # Check login
 def user_password(request):
@@ -133,8 +149,15 @@ def user_password(request):
     else:
         # category = Category.objects.all()
         form = PasswordChangeForm(request.user)
-        return render(request, 'user_password.html', {'form': form,  # 'category': category
-                                                      })
+        context = {
+            'form': form,
+            # 'category': category
+        }
+        return render(request, 'user_password.html', context)
+
+# ============================================
+#     Create user_orders views here.
+# ============================================
 
 
 @login_required(login_url='/login')  # Check login
@@ -142,10 +165,16 @@ def user_orders(request):
     # category = Category.objects.all()
     current_user = request.user
     orders = Order.objects.filter(user_id=current_user.id)
-    context = {  # 'category': category,
+    context = {
+        # 'category': category,
         'orders': orders,
     }
     return render(request, 'user_orders.html', context)
+
+
+# ============================================
+#     Create user_orderdetail views here.
+# ============================================
 
 
 @login_required(login_url='/login')  # Check login
@@ -161,6 +190,10 @@ def user_orderdetail(request, id):
     }
     return render(request, 'user_order_detail.html', context)
 
+# ============================================
+#     Create user_order_product views here.
+# ============================================
+
 
 @login_required(login_url='/login')  # Check login
 def user_order_product(request):
@@ -172,6 +205,10 @@ def user_order_product(request):
         'order_product': order_product,
     }
     return render(request, 'user_order_products.html', context)
+
+# ============================================
+#     Create user_order_product_detail views here.
+# ============================================
 
 
 @login_required(login_url='/login')  # Check login
@@ -187,6 +224,10 @@ def user_order_product_detail(request, id, oid):
     }
     return render(request, 'user_order_detail.html', context)
 
+# ============================================
+#     Create user_comments views here.
+# ============================================
+
 
 def user_comments(request):
     # category = Category.objects.all()
@@ -198,6 +239,10 @@ def user_comments(request):
     }
     return render(request, 'user_comments.html', context)
 
+
+# ============================================
+#     Create user_deletecomment views here.
+# ============================================
 
 @login_required(login_url='/login')  # Check login
 def user_deletecomment(request, id):

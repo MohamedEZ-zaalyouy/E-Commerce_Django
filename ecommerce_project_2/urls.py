@@ -30,6 +30,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
+    path('currencies/', include('currencies.urls')),
     path(_('admin/'), admin.site.urls),
     path('', include("home.urls")),
     path('', views.index, name='home'),

@@ -104,3 +104,5 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
 This part Include Setting, Category, Product, FAQ, Userprofile Model and Admin, At the frontpages Product Detail, FAQ, Userprofile
 
 ![](imgscrin/Multi%20Language%20on%20Database.png)
+
+## Multi Currency

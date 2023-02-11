@@ -33,7 +33,7 @@ def shopcartcount(userid):
         'shopcart': shopcart,
         'total': total,
     }
-    return context
+    return count
 
 # views-> "category =  categoryTree(0,'','tr')"  html-> "ategoryTree 0 '' LANGUAGE_CODE as category"
 

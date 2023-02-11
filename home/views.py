@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 from django.utils import translation
 from django.contrib.auth.decorators import login_required
 from ecommerce_project_2 import settings
+
+LANGUAGE_SESSION_KEY = '_language'
 # Create your views here.
 
 # ========================================================
@@ -19,9 +21,11 @@ from ecommerce_project_2 import settings
 
 
 def index(request):
+    if not request.session.has_key('currency'):
+        request.session['currency'] = settings.DEFAULT_CURRENCY
 
     setting = Setting.objects.get(pk=1)
-    product_latest = Product.objects.all().order_by(
+    products_latest = Product.objects.all().order_by(
         '-id')[:4]  # last 4 products
     # >>>>>>>>>>>>>>>> M U L T I   L A N G U G A E >>>>>> START
     defaultlang = settings.LANGUAGE_CODE[0:2]
@@ -29,29 +33,27 @@ def index(request):
 
     if defaultlang != currentlang:
         setting = SettingLang.objects.get(lang=currentlang)
-        product_latest = Product.objects.raw(
+        products_latest = Product.objects.raw(
             'SELECT p.id,p.price, l.title, l.description,l.slug  '
             'FROM product_product as p '
             'LEFT JOIN product_productlang as l '
             'ON p.id = l.product_id '
             'WHERE  l.lang=%s ORDER BY p.id DESC LIMIT 4', [currentlang])
 
-    setting = Setting.objects.get(pk=1)
-    # category = Category.objects.all()
-    product_slider = Product.objects.all().order_by('-id')[:4]
-    # product_latest = Product.objects.all().order_by('-id')[:4]  # last 4 products
-    product_picked = Product.objects.all().order_by(
-        '?')[:4]  # Random selected 4 products
-    page = 'home'
+    products_slider = Product.objects.all().order_by('id')[
+        :4]  # first 4 products
 
-    context = {
-        'setting': setting,
-        'page': page,
-        # 'category': category,
-        'product_slider': product_slider,
-        'product_latest': product_latest,
-        'product_picked': product_picked,
-    }
+    products_picked = Product.objects.all().order_by(
+        '?')[:4]  # Random selected 4 products
+
+    page = "home"
+    context = {'setting': setting,
+               'page': page,
+               'products_slider': products_slider,
+               'products_latest': products_latest,
+               'products_picked': products_picked,
+               # 'category':category
+               }
     return render(request, 'index.html', context)
 
 # ========================================================
@@ -295,7 +297,7 @@ def selectlanguage(request):
         lasturl = request.META.get('HTTP_REFERER')
         lang = request.POST['language']
         translation.activate(lang)
-        request.session[translation.LANGUAGE_SESSION_KEY] = lang
+        request.session[LANGUAGE_SESSION_KEY] = lang
         return HttpResponseRedirect("/"+lang)
 
 # ========================================================
@@ -321,4 +323,7 @@ def savelangcur(request):
 
 
 def selectcurrency(request):
-    pass
+    lasturl = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':  # check post
+        request.session['currency'] = request.POST['currency']
+    return HttpResponseRedirect(lasturl)
