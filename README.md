@@ -4,7 +4,12 @@
 
 ### database UML
 
+![](imgscrin/1.png)
+
 ### Template implementation
+
+Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
+![](imgscrin/2.png)
 
 ### database model admin relation category and product image upload
 
