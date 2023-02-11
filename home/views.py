@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
-from home.models import Setting, ContactForm, ContactMessage, FAQ
+from home.models import Setting, ContactForm, ContactMessage, FAQ, SettingLang, Language
 from user.models import UserProfile
-from product.models import Category, Product, Images, Comment, Variants
+from product.models import Category, Product, Images, Comment, Variants, CategoryLang
 from order.models import ShopCart
 from home.forms import SearchForm
 import json
@@ -19,11 +19,27 @@ from ecommerce_project_2 import settings
 
 
 def index(request):
+
+    setting = Setting.objects.get(pk=1)
+    product_latest = Product.objects.all().order_by(
+        '-id')[:4]  # last 4 products
+    # >>>>>>>>>>>>>>>> M U L T I   L A N G U G A E >>>>>> START
+    defaultlang = settings.LANGUAGE_CODE[0:2]
+    currentlang = request.LANGUAGE_CODE[0:2]
+
+    if defaultlang != currentlang:
+        setting = SettingLang.objects.get(lang=currentlang)
+        product_latest = Product.objects.raw(
+            'SELECT p.id,p.price, l.title, l.description,l.slug  '
+            'FROM product_product as p '
+            'LEFT JOIN product_productlang as l '
+            'ON p.id = l.product_id '
+            'WHERE  l.lang=%s ORDER BY p.id DESC LIMIT 4', [currentlang])
+
     setting = Setting.objects.get(pk=1)
     # category = Category.objects.all()
     product_slider = Product.objects.all().order_by('-id')[:4]
-    product_latest = Product.objects.all().order_by(
-        '-id')[:4]  # last 4 products
+    # product_latest = Product.objects.all().order_by('-id')[:4]  # last 4 products
     product_picked = Product.objects.all().order_by(
         '?')[:4]  # Random selected 4 products
     page = 'home'
@@ -44,12 +60,14 @@ def index(request):
 
 
 def aboutus(request):
+    # category = categoryTree(0,'',currentlang)
+    defaultlang = settings.LANGUAGE_CODE[0:2]
+    currentlang = request.LANGUAGE_CODE[0:2]
     setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
-    context = {
-        'setting': setting,
-        'category': category,
-    }
+    if defaultlang != currentlang:
+        setting = SettingLang.objects.get(lang=currentlang)
+
+    context = {'setting': setting}
     return render(request, 'aboutus.html', context)
 
 
@@ -59,6 +77,7 @@ def aboutus(request):
 
 
 def contact(request):
+    currentlang = request.LANGUAGE_CODE[0:2]
     # category = categoryTree(0,'',currentlang)
     if request.method == 'POST':  # check post
         form = ContactForm(request.POST)
@@ -73,14 +92,15 @@ def contact(request):
             messages.success(
                 request, "Your message has ben sent. Thank you for your message.")
             return HttpResponseRedirect('/contact')
-    category = Category.objects.all()
+
+    defaultlang = settings.LANGUAGE_CODE[0:2]
+    currentlang = request.LANGUAGE_CODE[0:2]
     setting = Setting.objects.get(pk=1)
+    if defaultlang != currentlang:
+        setting = SettingLang.objects.get(lang=currentlang)
+
     form = ContactForm
-    context = {
-        'setting': setting,
-        'category': category,
-        'form': form,
-    }
+    context = {'setting': setting, 'form': form}
     return render(request, 'contact.html', context)
 
 # ========================================================
@@ -89,12 +109,25 @@ def contact(request):
 
 
 def category_products(request, id, slug):
-    category = Category.objects.all()
-    products = Product.objects.filter(category_id=id)
-    context = {
-        'category': category,
-        'products': products,
-    }
+    defaultlang = settings.LANGUAGE_CODE[0:2]
+    currentlang = request.LANGUAGE_CODE[0:2]
+    catdata = Category.objects.get(pk=id)
+    products = Product.objects.filter(category_id=id)  # default language
+    if defaultlang != currentlang:
+        try:
+            products = Product.objects.raw(
+                'SELECT p.id,p.price,p.amount,p.image,p.variant,l.title, l.keywords, l.description,l.slug,l.detail '
+                'FROM product_product as p '
+                'LEFT JOIN product_productlang as l '
+                'ON p.id = l.product_id '
+                'WHERE p.category_id=%s and l.lang=%s', [id, currentlang])
+        except:
+            pass
+        catdata = CategoryLang.objects.get(category_id=id, lang=currentlang)
+
+    context = {'products': products,
+               # 'category':category,
+               'catdata': catdata}
     return render(request, 'category_products.html', context)
 
 # ========================================================
@@ -272,7 +305,15 @@ def selectlanguage(request):
 
 @login_required(login_url='/login')  # Check login
 def savelangcur(request):
-    pass
+    lasturl = request.META.get('HTTP_REFERER')
+    curren_user = request.user
+    language = Language.objects.get(code=request.LANGUAGE_CODE[0:2])
+    # Save to User profile database
+    data = UserProfile.objects.get(user_id=curren_user.id)
+    data.language_id = language.id
+    data.currency_id = request.session['currency']
+    data.save()  # save data
+    return HttpResponseRedirect(lasturl)
 
 # ========================================================
 # Create selectcurrency Views
