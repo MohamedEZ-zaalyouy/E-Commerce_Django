@@ -11,11 +11,31 @@
 Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 ![](imgscrin/2.png)
 
+## 2 Products
+
 ### database model admin relation category and product image upload
 
-## 2 Product Image gallery
+![](imgscrin/3.png)
 
-## 3 Implemet Richtext Editor Ckeditor
+### Implemet Richtext Editor Ckeditor
+
+![](imgscrin/4.png)
+
+### Product Image gallery
+
+![](imgscrin/5.png)
+
+### Variants de Product
+
+![](imgscrin/6.png)
+
+### Page Product detail with image gallery
+
+![](imgscrin/7.png)
+
+### Product Review Comment Rating
+
+![](imgscrin/8.png)
 
 ## 4 Pages de contact
 
@@ -28,10 +48,6 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 ## 7 Pages sign Up
 
 ## 8 Pages FAQ
-
-## 9 Page Product detail with image gallery
-
-## 10 Product Review Comment Rating
 
 ## 11 Category Tree Subcategory menu('mptt')
 
