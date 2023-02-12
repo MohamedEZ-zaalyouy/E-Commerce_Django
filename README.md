@@ -63,19 +63,21 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 
 ![](imgscrin/14.png)
 
+### Order Prudacts and Detail
+
+![](imgscrin/18.png)
+
 ## 13 user profile information
 
 ![](imgscrin/15.png)
 
 ### Update Change User & Profile Information
 
+![](imgscrin/16.png)
+
 ### Change User Password
 
-## 14 Order Prudacts and Detail
-
-## 15 User Comments List and Delete
-
-## 16 Count and Average of Products Reviews
+![](imgscrin/17.png)
 
 ## 17 Product Attributes Variants Amazon style Size Color
 
@@ -93,11 +95,6 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
     <li>Install image thumbnails</li>
         pip install django-admin-thumbnails
         Define thumbnails variants images
-    <li> Set Admin for new models </li>
-        Color,
-        Size,
-        Variants
-    <li>Set Variants inline for Product in admin</li>
     <li>Product Detail</li>
         Change product detail function  -views
         Change product link depending on variant --templates
@@ -117,6 +114,9 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
     <li>User Orders product </li>
          Add variant image in order product list;
 </ol>
+
+![](imgscrin/6.png)
+![](imgscrin/7.png)
 
 ## 18 Multi Language on static html files and Urls
 
