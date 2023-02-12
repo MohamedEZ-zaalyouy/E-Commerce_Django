@@ -57,9 +57,15 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 
 ## 11 Category Tree Subcategory menu('mptt')
 
+![](imgscrin/13.png)
+
 ## 12 Shop cart Add list delete items
 
+![](imgscrin/14.png)
+
 ## 13 user profile information
+
+![](imgscrin/15.png)
 
 ### Update Change User & Profile Information
 
