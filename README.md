@@ -1,5 +1,7 @@
 # E-Commerce_Django
 
+![](imgscrin/0.png)
+
 ## 1 Django Installation Structure Introduction
 
 ### database UML
@@ -114,3 +116,7 @@ This part Include Setting, Category, Product, FAQ, Userprofile Model and Admin, 
 ![](imgscrin/Multi%20Language%20on%20Database.png)
 
 ![](imgscrin/19.png)
+
+# Espace administrateur E-Commerce_Django
+
+![](imgscrin/00.png)
