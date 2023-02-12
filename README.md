@@ -39,13 +39,19 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 
 ## 4 Pages de contact
 
+![](imgscrin/9.png)
+
 ## 5 Pages Search Products
 
-### Search Auto Products
+![](imgscrin/10.png)
 
 ## 6 Pages login
 
+![](imgscrin/11.png)
+
 ## 7 Pages sign Up
+
+![](imgscrin/12.png)
 
 ## 8 Pages FAQ
 

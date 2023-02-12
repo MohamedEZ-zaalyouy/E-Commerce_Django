@@ -8,7 +8,7 @@ from order.models import Order, OrderProduct
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
-
+LANGUAGE_SESSION_KEY = '_language'
 # ============================================
 #     Create index views here.
 # ============================================

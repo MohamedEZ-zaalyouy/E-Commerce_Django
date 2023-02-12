@@ -13,6 +13,7 @@ from order.models import Order, OrderProduct
 from product.models import Category, Comment
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
+LANGUAGE_SESSION_KEY = '_language'
 
 
 @login_required(login_url='/login')  # Check login
@@ -36,7 +37,7 @@ def login_form(request):
             userprofile = UserProfile.objects.get(user_id=current_user.id)
             request.session['userimage'] = userprofile.image.url
             # *** Multi Langugae
-            request.session[translation.LANGUAGE_SESSION_KEY] = userprofile.language.code
+            request.session[LANGUAGE_SESSION_KEY] = userprofile.language.code
             request.session['currency'] = userprofile.currency.code
             translation.activate(userprofile.language.code)
 
@@ -56,8 +57,8 @@ def login_form(request):
 
 def logout_func(request):
     logout(request)
-    if translation.LANGUAGE_SESSION_KEY in request.session:
-        del request.session[translation.LANGUAGE_SESSION_KEY]
+    if LANGUAGE_SESSION_KEY in request.session:
+        del request.session[LANGUAGE_SESSION_KEY]
         del request.session['currency']
     return HttpResponseRedirect('/')
 
@@ -88,7 +89,7 @@ def signup(request):
     context = {  # 'category': category,
         'form': form,
     }
-    return render(request, 'signup_form.html', context)
+    return render(request, 'signup.html', context)
 
 
 @login_required(login_url='/login')  # Check login
