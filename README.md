@@ -37,29 +37,29 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 
 ![](imgscrin/8.png)
 
-## 4 Pages de contact
+## 3 Pages de contact
 
 ![](imgscrin/9.png)
 
-## 5 Pages Search Products
+## 4 Pages Search Products
 
 ![](imgscrin/10.png)
 
-## 6 Pages login
+## 5 Pages login
 
 ![](imgscrin/11.png)
 
-## 7 Pages sign Up
+## 6 Pages sign Up
 
 ![](imgscrin/12.png)
 
-## 8 Pages FAQ
+## 7 Pages FAQ
 
-## 11 Category Tree Subcategory menu('mptt')
+## 8 Category Tree Subcategory menu('mptt')
 
 ![](imgscrin/13.png)
 
-## 12 Shop cart Add list delete items
+## 9 Shop cart Add list delete items
 
 ![](imgscrin/14.png)
 
@@ -67,7 +67,7 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 
 ![](imgscrin/18.png)
 
-## 13 user profile information
+## 10 user profile information
 
 ![](imgscrin/15.png)
 
@@ -79,7 +79,7 @@ Web Template of this prpoject: https://colorlib.com/wp/template/e-shop/
 
 ![](imgscrin/17.png)
 
-## 17 Product Attributes Variants Amazon style Size Color
+## 11 Product Attributes Variants Amazon style Size Color
 
 ![](imgscrin/varaint.png)
 
@@ -102,28 +102,15 @@ Product Attributes Variants Amazon style Size Color (Database Model and Admin)
         Apply Ajax for getting Product variant --templates
         Add ajax function  -- View
         Select Variant Size, Color -templates
-    <li>Shopcart</li>
-        Define  variant relation in shopcart -- Model
-        Add variant id to shopcart --views
-        Get variant price in list --templates
-    <li>Order</li>
-        Define variant relation in order  -- Model;
-        Add variant_id to order table   -- views;
-        Add variant in reduction from stock code -  views;
-        Get variant information in order list list --templates;
-    <li>User Orders product </li>
-         Add variant image in order product list;
 </ol>
 
 ![](imgscrin/6.png)
 ![](imgscrin/7.png)
 
-## 18 Multi Language on static html files and Urls
-
-## 19 Multi Language on Database Models
+## 12 Multi Language on Database Models and Multi Currency
 
 This part Include Setting, Category, Product, FAQ, Userprofile Model and Admin, At the frontpages Product Detail, FAQ, Userprofile
 
 ![](imgscrin/Multi%20Language%20on%20Database.png)
 
-## 20 Multi Currency
+![](imgscrin/19.png)
