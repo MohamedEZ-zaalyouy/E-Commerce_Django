@@ -1,4 +1,31 @@
 # E-Commerce_Django
+MED-SHOP is e-commerce website is an online platform that allows individuals or businesses to buy and sell products and services over the internet.
+
+Some of the key features of an e-commerce website :
+
+### Product Catalogue:
+A listing of all the products or services offered for sale on the website, with detailed descriptions, images, and prices.
+
+### Shopping Cart:
+A virtual cart that keeps track of all the items selected for purchase by the customer.
+
+### Payment Gateway: 
+A secure platform for processing customer payments, which can include credit card, debit card, or online payment services such as PayPal.
+
+### Order Management:
+A system that keeps track of customer orders, including order status, shipping information, and customer information.
+
+### Customer Accounts:
+A system that allows customers to create an account on the website, which can be used to store shipping information, payment information, and order history.
+
+### Search and Filtering: 
+A feature that allows customers to easily search for products and filter their results based on various criteria such as price, brand, and category.
+
+### Responsive Design: 
+A design that adjusts to different screen sizes and devices, ensuring a positive user experience on desktop, tablet, and mobile devices.
+
+### Customer Service:
+A system for providing support to customers, including live chat, email support, and a comprehensive FAQ section.
 
 ![](imgscrin/0.png)
 
